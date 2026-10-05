@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#4A1A7A">
+<title>Handout V3 · Unit 4 · SMK Mikael</title>
+<style>
+:root{--ink:#1F1830;--muted:#65597A;--p:#4A1A7A;--p2:#6B3AA0;--pl:#F2ECFA;--pll:#FAF7FD;--r:#B01A2C;--rl:#FCE6E9;--line:#E2DAF0;--bg:#F7F4FB;--card:#fff;--solid:#4A1A7A;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#EEE8F7;--muted:#B3A8C7;--p:#C9A8F0;--p2:#B48BE6;--pl:#2A1F3A;--pll:#211A2D;--r:#FF7B8C;--rl:#3A1C24;--line:#3A2F4C;--bg:#16111F;--card:#1D1728}}
+:root[data-theme="dark"]{--ink:#EEE8F7;--muted:#B3A8C7;--p:#C9A8F0;--p2:#B48BE6;--pl:#2A1F3A;--pll:#211A2D;--r:#FF7B8C;--rl:#3A1C24;--line:#3A2F4C;--bg:#16111F;--card:#1D1728}
+*{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 132px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:640px;margin:0 auto;padding:0 14px 40px}
+header.top{background:var(--p);color:#fff;padding:18px 16px 16px;position:relative;overflow:hidden}
+:root[data-theme="dark"] header.top{background:#2E1250}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) header.top{background:#2E1250}}
+header.top .school{font-size:13px;opacity:.82}
+header.top h1{margin:4px 0 2px;font-size:26px;letter-spacing:-.01em;line-height:1.15}
+header.top .trio{font-variant-numeric:tabular-nums;font-size:14px;opacity:.9}
+header.top .trio b{color:#FFB3BD}
+header.top::after{content:"V3";position:absolute;right:-6px;bottom:-30px;font-size:120px;font-weight:800;color:rgba(255,255,255,.07);line-height:1}
+.tabs{position:sticky;top:0;z-index:20;background:var(--bg);padding:10px 14px 8px;max-width:640px;margin:0 auto}
+.tabbar{display:grid;grid-template-columns:repeat(3,1fr);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px;gap:4px}
+.tabbar button{border:0;background:none;color:var(--muted);font:inherit;font-size:14px;font-weight:600;padding:9px 4px;border-radius:9px;cursor:pointer}
+.tabbar button[aria-selected="true"]{background:var(--solid);color:#fff}
+.tools{margin-top:8px}
+.search{display:flex;gap:8px}
+.search input{flex:1;min-width:0;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
+.search input:focus{outline:2px solid var(--p2);outline-offset:0}
+.toggle{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);white-space:nowrap;padding:0 4px;cursor:pointer;user-select:none}
+.toggle input{accent-color:var(--r);width:18px;height:18px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:8px 0 2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips a{flex:none;text-decoration:none;font-size:13px;font-weight:600;color:var(--p);background:var(--pl);padding:6px 10px;border-radius:999px}
+section.panel{display:none}section.panel.on{display:block}
+.group{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:12px 0;overflow:hidden}
+.ghead{padding:12px 14px 10px;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:flex-start}
+.gnum{flex:none;width:34px;height:34px;border-radius:10px;background:var(--solid);color:#fff;font-weight:800;display:grid;place-items:center;font-size:15px}
+.ghead h2{margin:0;font-size:16px;line-height:1.25;color:var(--p)}
+.tip{margin:4px 0 0;font-size:13.5px;color:var(--muted)}
+.tip b{color:var(--r)}
+.row{display:grid;grid-template-columns:1fr 1fr 1fr 1.25fr;gap:6px;padding:8px 12px;border-top:1px solid var(--line);align-items:baseline}
+.row:first-of-type{border-top:0}
+.row:nth-child(even){background:var(--pll)}
+.row .f{font-size:15.5px;word-break:break-word;font-variant-ligatures:none}
+.row .v3{font-weight:800;color:var(--r)}
+.row .ar{font-size:12.5px;color:var(--muted);line-height:1.25}
+.row .star{color:var(--p2);font-size:11px;vertical-align:super;margin-left:2px}
+.colh{display:grid;grid-template-columns:1fr 1fr 1fr 1.25fr;gap:6px;padding:6px 12px;font-size:11.5px;font-weight:700;color:var(--muted);background:var(--pl)}
+body.hide .v3 .w{filter:blur(6px);opacity:.6}
+body.hide .v3{cursor:pointer}
+body.hide .v3.show .w{filter:none;opacity:1}
+.empty{text-align:center;color:var(--muted);padding:30px 10px;display:none}
+.note{font-size:13px;color:var(--muted);margin:10px 2px}
+/* Penanya */
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:12px 0}
+.who{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.who h2{margin:0;font-size:16px;color:var(--p)}
+.pill{font-size:12px;font-weight:700;padding:4px 9px;border-radius:999px;background:var(--pl);color:var(--p)}
+.ask{text-align:center;padding:18px 6px 8px}
+.ask .q{font-size:14px;color:var(--muted)}
+.ask .big{font-size:44px;font-weight:800;letter-spacing:-.02em;color:var(--ink);line-height:1.1;margin:4px 0;word-break:break-word}
+.ask .ans{font-size:15px;color:var(--muted);min-height:22px}
+.ask .ans b{color:var(--r);font-size:22px}
+.btns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.btn{font:inherit;font-weight:700;font-size:15px;border:0;border-radius:12px;padding:14px 6px;cursor:pointer}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.ok{background:#1E7A46;color:#fff}.no{background:#B01A2C;color:#fff}.ps{background:var(--pl);color:var(--p)}
+.wide{width:100%;margin-top:10px;background:var(--solid);color:#fff}
+.ghost{background:none;border:1px solid var(--line);color:var(--muted);font-size:13px;padding:10px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:12px;text-align:center}
+.stats div{background:var(--pll);border-radius:10px;padding:8px 2px}
+.stats b{display:block;font-size:20px;color:var(--p)}
+.stats span{font-size:11.5px;color:var(--muted)}
+.stats .score b{color:var(--r)}
+.log{margin:10px 0 0;padding:0;list-style:none;font-size:13.5px;max-height:220px;overflow:auto}
+.log li{display:flex;justify-content:space-between;padding:6px 2px;border-top:1px solid var(--line)}
+.log .m{font-weight:700}
+.done{background:var(--rl);color:var(--r);border-radius:10px;padding:10px;font-weight:700;font-size:14px;margin-top:10px;display:none;text-align:center}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+/* Aturan */
+.rules h2{font-size:16px;color:var(--p);margin:4px 0 6px}
+.rules ol{margin:0;padding-left:22px}.rules li{margin:6px 0;font-size:14.5px}
+.rules li b{color:var(--r)}
+table.sc{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+table.sc td{padding:8px 6px;border-top:1px solid var(--line)}
+table.sc td:last-child{text-align:right;font-weight:700;white-space:nowrap}
+.phrase{background:var(--pl);border-radius:10px;padding:10px 12px;font-size:14.5px;margin:8px 0}
+.phrase i{color:var(--p);font-style:normal;font-weight:700}
+footer{text-align:center;font-size:12px;color:var(--muted);padding:10px 0 20px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="school">SMK Katolik St. Mikael Surakarta · English · Unit 4</div>
+  <h1>Handout V3</h1>
+  <div class="trio">14 keluarga pola · V1 – V2 – <b>V3</b></div>
+</header>
+
+<div class="tabs">
+  <div class="tabbar" role="tablist">
+    <button role="tab" aria-selected="true" data-tab="list">Daftar V3</button>
+    <button role="tab" aria-selected="false" data-tab="ask">Penanya</button>
+    <button role="tab" aria-selected="false" data-tab="rules">Aturan</button>
+  </div>
+  <div class="tools" id="tools">
+    <div class="search">
+      <input id="q" type="search" placeholder="Cari kata kerja atau arti…" autocomplete="off">
+      <label class="toggle"><input type="checkbox" id="hide"> Tutup V3</label>
+    </div>
+    <nav class="chips" id="chips"></nav>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="panel on" id="p-list">
+    <p class="note">★ = sudah ada di slide Unit 4. Centang <b>Tutup V3</b> untuk latihan, lalu ketuk V3 untuk membukanya.</p>
+    <div id="groups"></div>
+    <div class="empty" id="empty">Kata kerja tidak ditemukan.</div>
+  </section>
+
+  <section class="panel" id="p-ask">
+    <div class="card">
+      <div class="who"><h2 id="whoLabel">Penjawab 1</h2><span class="pill" id="asked">0 / 20 ditanya</span></div>
+      <div class="ask">
+        <div class="q">What is the verb 3 of…</div>
+        <div class="big" id="big">—</div>
+        <div class="ans" id="ans">Ketuk "Kata acak" untuk mulai</div>
+      </div>
+      <button class="btn wide" id="next">Kata acak</button>
+      <div class="btns">
+        <button class="btn ok" id="bOk" disabled>Benar</button>
+        <button class="btn no" id="bNo" disabled>Salah</button>
+        <button class="btn ps" id="bPs" disabled>Pass</button>
+      </div>
+      <div class="done" id="done"></div>
+      <div class="stats">
+        <div><b id="sOk">0</b><span>Benar</span></div>
+        <div><b id="sNo">0</b><span>Salah/Pass</span></div>
+        <div><b id="sG1">0/3</b><span>Grup 1</span></div>
+        <div class="score"><b id="sScore">0</b><span>Nilai</span></div>
+      </div>
+      <ul class="log" id="log"></ul>
+    </div>
+    <div class="row2">
+      <button class="btn ghost" id="swap">Ganti penjawab</button>
+      <button class="btn ghost" id="reset">Video baru (reset)</button>
+    </div>
+    <p class="note">Layar HP menghadap penanya saja. Kata yang sudah dipakai tidak akan muncul lagi dalam video yang sama, juga setelah ganti penjawab. Nilai di sini hanya perkiraan; nilai resmi dihitung guru dari video.</p>
+  </section>
+
+  <section class="panel rules" id="p-rules">
+    <div class="card">
+      <h2>Perekaman</h2>
+      <ol>
+        <li>Video <b>direkam oleh pasangan lain</b>, bukan selfie. Gantian saling merekam.</li>
+        <li>Kamera merekam <b>setengah badan sampai kedua tangan terlihat</b>. Rekam horizontal.</li>
+        <li>Saat tanya-jawab <b>saling berhadapan</b>, tidak menghadap kamera. Salam pembuka saja yang menghadap kamera.</li>
+        <li>Satu kali rekam. Tanpa edit, potong, filter, atau subtitle.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h2>HP dan catatan</h2>
+      <ol>
+        <li><b>Penanya boleh memegang HP</b> (handout ini). Layar tidak boleh diperlihatkan ke penjawab.</li>
+        <li><b>Saat giliranmu ditanya, HP ditaruh</b> dan kedua tangan kosong terlihat di kamera.</li>
+        <li>Tidak ada kertas, buku, atau tulisan di tangan.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h2>Tanya-jawab</h2>
+      <div class="phrase"><i>"Hello, we are ___ (number ___) and ___ (number ___) from class ___. Today is ___."</i></div>
+      <div class="phrase">Q: <i>"What is the verb 3 of ___?"</i><br>A: <i>"The verb 3 of ___ is ___."</i></div>
+      <ol>
+        <li>Hanya irregular verbs. Satu kata kerja hanya sekali per video.</li>
+        <li>Maksimal 3 kata kerja Grup 1 per siswa.</li>
+        <li>Tidak tahu? Katakan "Pass" (dihitung salah).</li>
+        <li>Minimal 10 benar, boleh sampai 15. Berhenti di 15 benar atau 20 pertanyaan.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h2>Penilaian per siswa</h2>
+      <table class="sc">
+        <tr><td>Benar ke-1 sampai ke-10</td><td>+8</td></tr>
+        <tr><td>Benar ke-11 sampai ke-15</td><td>+4</td></tr>
+        <tr><td>Salah atau Pass</td><td style="color:var(--r)">−2</td></tr>
+        <tr><td>Nilai maksimal</td><td>100</td></tr>
+        <tr><td>Dikirim setelah hari ini</td><td>maks 60</td></tr>
+        <tr><td>Penjawab memegang HP/catatan, atau video diedit</td><td style="color:var(--r)">tidak diterima</td></tr>
+        <tr><td>Tangan tidak terlihat, menghadap kamera, tidak direkam pasangan lain</td><td>−10</td></tr>
+      </table>
+      <p class="note">Nama file: Class_Number1-Number2_V3 (contoh: XI-TPM-1_07-15_V3)</p>
+    </div>
+  </section>
+  <footer>SMK Katolik St. Mikael Surakarta · Unit 4 Independent Week</footer>
+</main>
+
+<script>
+const G = [{"n":1,"t":"Ketiga bentuk sama (A–A–A)","s":"A–A–A","tip":"Tidak ada yang berubah. Hati-hati dengan *read*: tulisannya sama, tetapi V2 dan V3 dibaca seperti \"red\".","v":[{"v1":"cut","star":false,"v2":"cut","v3":"cut","ar":"memotong"},{"v1":"put","star":false,"v2":"put","v3":"put","ar":"meletakkan"},{"v1":"set","star":false,"v2":"set","v3":"set","ar":"memasang, mengatur"},{"v1":"let","star":false,"v2":"let","v3":"let","ar":"membiarkan"},{"v1":"hit","star":false,"v2":"hit","v3":"hit","ar":"memukul"},{"v1":"hurt","star":false,"v2":"hurt","v3":"hurt","ar":"melukai"},{"v1":"cost","star":false,"v2":"cost","v3":"cost","ar":"memakan biaya"},{"v1":"shut","star":false,"v2":"shut","v3":"shut","ar":"menutup"},{"v1":"spread","star":false,"v2":"spread","v3":"spread","ar":"menyebarkan"},{"v1":"quit","star":false,"v2":"quit","v3":"quit","ar":"berhenti"},{"v1":"read","star":true,"v2":"read","v3":"read","ar":"membaca"}]},{"n":2,"t":"V3 kembali ke V1 (A–B–A)","s":"Back to V1","tip":"Hanya V2 yang berubah. V3 sama dengan V1.","v":[{"v1":"come","star":true,"v2":"came","v3":"come","ar":"datang"},{"v1":"become","star":false,"v2":"became","v3":"become","ar":"menjadi"},{"v1":"overcome","star":false,"v2":"overcame","v3":"overcome","ar":"mengatasi"},{"v1":"run","star":false,"v2":"ran","v3":"run","ar":"berlari, menjalankan"}]},{"n":3,"t":"Berakhiran -ought / -aught","s":"-ought / -aught","tip":"V2 = V3. Hanya *teach* dan *catch* yang memakai **-aught**. Sisanya memakai **-ought**.","v":[{"v1":"buy","star":false,"v2":"bought","v3":"bought","ar":"membeli"},{"v1":"bring","star":false,"v2":"brought","v3":"brought","ar":"membawa"},{"v1":"think","star":false,"v2":"thought","v3":"thought","ar":"berpikir"},{"v1":"fight","star":false,"v2":"fought","v3":"fought","ar":"bertarung"},{"v1":"teach","star":false,"v2":"taught","v3":"taught","ar":"mengajar"},{"v1":"catch","star":false,"v2":"caught","v3":"caught","ar":"menangkap"}]},{"n":4,"t":"Bunyi panjang menjadi pendek + t","s":"Short vowel + t","tip":"V2 = V3. Bunyi panjang *ee/ea* menjadi *e* pendek, lalu ditambah **-t** di akhir.","v":[{"v1":"keep","star":false,"v2":"kept","v3":"kept","ar":"menyimpan, menjaga"},{"v1":"sleep","star":false,"v2":"slept","v3":"slept","ar":"tidur"},{"v1":"sweep","star":false,"v2":"swept","v3":"swept","ar":"menyapu"},{"v1":"feel","star":false,"v2":"felt","v3":"felt","ar":"merasa"},{"v1":"leave","star":false,"v2":"left","v3":"left","ar":"meninggalkan"},{"v1":"mean","star":false,"v2":"meant","v3":"meant","ar":"berarti"},{"v1":"meet","star":false,"v2":"met","v3":"met","ar":"bertemu"},{"v1":"lose","star":false,"v2":"lost","v3":"lost","ar":"kehilangan, kalah"}]},{"n":5,"t":"Huruf -d menjadi -t","s":"-d → -t","tip":"V2 = V3. Huruf **d** terakhir diganti **t**.","v":[{"v1":"build","star":false,"v2":"built","v3":"built","ar":"membangun, merakit"},{"v1":"send","star":false,"v2":"sent","v3":"sent","ar":"mengirim"},{"v1":"spend","star":false,"v2":"spent","v3":"spent","ar":"menghabiskan"},{"v1":"lend","star":false,"v2":"lent","v3":"lent","ar":"meminjamkan"},{"v1":"bend","star":false,"v2":"bent","v3":"bent","ar":"membengkokkan"}]},{"n":6,"t":"Berakhiran -ade / -aid / -ad / -ard","s":"-ade / -aid / -ard","tip":"V2 = V3, dan berakhiran huruf **d**.","v":[{"v1":"make","star":true,"v2":"made","v3":"made","ar":"membuat"},{"v1":"have","star":true,"v2":"had","v3":"had","ar":"memiliki"},{"v1":"pay","star":false,"v2":"paid","v3":"paid","ar":"membayar"},{"v1":"say","star":false,"v2":"said","v3":"said","ar":"berkata"},{"v1":"lay","star":false,"v2":"laid","v3":"laid","ar":"meletakkan"},{"v1":"hear","star":false,"v2":"heard","v3":"heard","ar":"mendengar"}]},{"n":7,"t":"Berakhiran -old / -ound / -ood","s":"-old / -ound / -ood","tip":"V2 = V3. Hafalkan berpasangan yang berima: sold/told, found/ground, stood/understood.","v":[{"v1":"sell","star":false,"v2":"sold","v3":"sold","ar":"menjual"},{"v1":"tell","star":false,"v2":"told","v3":"told","ar":"memberi tahu"},{"v1":"find","star":false,"v2":"found","v3":"found","ar":"menemukan"},{"v1":"grind","star":false,"v2":"ground","v3":"ground","ar":"menggerinda"},{"v1":"stand","star":false,"v2":"stood","v3":"stood","ar":"berdiri"},{"v1":"understand","star":false,"v2":"understood","v3":"understood","ar":"memahami"}]},{"n":8,"t":"Vokal berubah menjadi u","s":"Vowel → u","tip":"V2 = V3, dan vokalnya berubah menjadi bunyi **u** (*won* dibaca seperti \"wan\").","v":[{"v1":"dig","star":false,"v2":"dug","v3":"dug","ar":"menggali"},{"v1":"stick","star":false,"v2":"stuck","v3":"stuck","ar":"menempel"},{"v1":"hang","star":false,"v2":"hung","v3":"hung","ar":"menggantung"},{"v1":"swing","star":false,"v2":"swung","v3":"swung","ar":"mengayun"},{"v1":"spin","star":false,"v2":"spun","v3":"spun","ar":"berputar"},{"v1":"win","star":false,"v2":"won","v3":"won","ar":"menang"}]},{"n":9,"t":"V3 = V1 + (e)n","s":"V1 + (e)n","tip":"Lupakan V2. Ambil **V1** lalu tambahkan **-n** atau **-en**.","v":[{"v1":"take","star":true,"v2":"took","v3":"taken","ar":"mengambil"},{"v1":"eat","star":true,"v2":"ate","v3":"eaten","ar":"makan"},{"v1":"give","star":true,"v2":"gave","v3":"given","ar":"memberi"},{"v1":"see","star":true,"v2":"saw","v3":"seen","ar":"melihat"},{"v1":"be","star":true,"v2":"was / were","v3":"been","ar":"adalah, berada"},{"v1":"fall","star":false,"v2":"fell","v3":"fallen","ar":"jatuh"},{"v1":"shake","star":false,"v2":"shook","v3":"shaken","ar":"mengguncang"},{"v1":"forgive","star":false,"v2":"forgave","v3":"forgiven","ar":"memaafkan"}]},{"n":10,"t":"Kata kerja i_e: -iven / -itten / -idden","s":"i_e → -iven / -itten","tip":"V2 memakai huruf **o** (drove, wrote). V3 kembali ke huruf **i** lalu ditambah **-en**. Bunyi *i* pendek = konsonan digandakan (written, hidden).","v":[{"v1":"drive","star":false,"v2":"drove","v3":"driven","ar":"mengemudi"},{"v1":"ride","star":false,"v2":"rode","v3":"ridden","ar":"mengendarai"},{"v1":"write","star":true,"v2":"wrote","v3":"written","ar":"menulis"},{"v1":"rise","star":false,"v2":"rose","v3":"risen","ar":"naik, terbit"},{"v1":"bite","star":false,"v2":"bit","v3":"bitten","ar":"menggigit"},{"v1":"hide","star":false,"v2":"hid","v3":"hidden","ar":"menyembunyikan"}]},{"n":11,"t":"V3 = V2 + (e)n","s":"V2 + (e)n","tip":"Kebalikan Grup 9. Ambil **V2** lalu tambahkan **-n** atau **-en**: spoke → spoken, wore → worn.","v":[{"v1":"speak","star":true,"v2":"spoke","v3":"spoken","ar":"berbicara"},{"v1":"break","star":false,"v2":"broke","v3":"broken","ar":"memecahkan"},{"v1":"choose","star":false,"v2":"chose","v3":"chosen","ar":"memilih"},{"v1":"freeze","star":false,"v2":"froze","v3":"frozen","ar":"membeku"},{"v1":"steal","star":false,"v2":"stole","v3":"stolen","ar":"mencuri"},{"v1":"wake","star":false,"v2":"woke","v3":"woken","ar":"bangun"},{"v1":"forget","star":false,"v2":"forgot","v3":"forgotten","ar":"lupa"},{"v1":"wear","star":false,"v2":"wore","v3":"worn","ar":"memakai"},{"v1":"tear","star":false,"v2":"tore","v3":"torn","ar":"merobek"}]},{"n":12,"t":"V2 -ew, V3 -own / -awn","s":"-ew → -own","tip":"V2 berakhiran **-ew**. V3 berakhiran **-own** (atau **-awn** untuk *draw*).","v":[{"v1":"know","star":false,"v2":"knew","v3":"known","ar":"tahu, mengenal"},{"v1":"grow","star":false,"v2":"grew","v3":"grown","ar":"tumbuh"},{"v1":"throw","star":false,"v2":"threw","v3":"thrown","ar":"melempar"},{"v1":"blow","star":false,"v2":"blew","v3":"blown","ar":"meniup"},{"v1":"fly","star":false,"v2":"flew","v3":"flown","ar":"terbang"},{"v1":"draw","star":false,"v2":"drew","v3":"drawn","ar":"menggambar"},{"v1":"show","star":false,"v2":"showed","v3":"shown","ar":"menunjukkan"}]},{"n":13,"t":"Keluarga i – a – u","s":"i – a – u","tip":"Vokalnya berjalan **i → a → u**. Nyanyikan: drink, drank, drunk.","v":[{"v1":"drink","star":true,"v2":"drank","v3":"drunk","ar":"minum"},{"v1":"begin","star":false,"v2":"began","v3":"begun","ar":"memulai"},{"v1":"sing","star":false,"v2":"sang","v3":"sung","ar":"bernyanyi"},{"v1":"ring","star":false,"v2":"rang","v3":"rung","ar":"berdering"},{"v1":"swim","star":false,"v2":"swam","v3":"swum","ar":"berenang"},{"v1":"sink","star":false,"v2":"sank","v3":"sunk","ar":"tenggelam"},{"v1":"shrink","star":false,"v2":"shrank","v3":"shrunk","ar":"menyusut"}]},{"n":14,"t":"Kata kerja unik: hafalkan","s":"Odd ones","tip":"Tidak punya keluarga. Ucapkan masing-masing lima kali.","v":[{"v1":"go","star":true,"v2":"went","v3":"gone","ar":"pergi"},{"v1":"do","star":true,"v2":"did","v3":"done","ar":"melakukan"},{"v1":"hold","star":false,"v2":"held","v3":"held","ar":"memegang"},{"v1":"sit","star":false,"v2":"sat","v3":"sat","ar":"duduk"},{"v1":"shoot","star":false,"v2":"shot","v3":"shot","ar":"menembak"},{"v1":"light","star":false,"v2":"lit","v3":"lit","ar":"menyalakan"},{"v1":"feed","star":false,"v2":"fed","v3":"fed","ar":"memberi makan"},{"v1":"lead","star":false,"v2":"led","v3":"led","ar":"memimpin"}]}];
+const $ = (s) => document.querySelector(s);
+const md = (s) => s.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\*(.+?)\*/g, '<i>$1</i>');
+const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+// ---------- list ----------
+$('#chips').innerHTML = G.map((g) => '<a href="#g' + g.n + '">' + g.n + ' · ' + g.s + '</a>').join('');
+$('#groups').innerHTML = G.map((g) =>
+  '<article class="group" id="g' + g.n + '"><div class="ghead"><div class="gnum">' + g.n + '</div><div><h2>' + g.t + '</h2><p class="tip">' + md(g.tip) + '</p></div></div>' +
+  '<div class="colh"><span>V1</span><span>V2</span><span>V3</span><span>Arti</span></div>' +
+  g.v.map((v) => '<div class="row" data-k="' + norm([v.v1, v.v2, v.v3, v.ar].join(' ')) + '"><span class="f">' + v.v1 + (v.star ? '<span class="star">★</span>' : '') + '</span><span class="f">' + v.v2 + '</span><span class="f v3"><span class="w">' + v.v3 + '</span></span><span class="ar">' + v.ar + '</span></div>').join('') +
+  '</article>').join('');
+
+$('#q').addEventListener('input', (e) => {
+  const q = norm(e.target.value.trim());
+  let any = false;
+  document.querySelectorAll('.group').forEach((g) => {
+    let n = 0;
+    g.querySelectorAll('.row').forEach((r) => { const m = !q || r.dataset.k.includes(q); r.style.display = m ? '' : 'none'; if (m) n++; });
+    g.style.display = n ? '' : 'none'; if (n) any = true;
+  });
+  $('#empty').style.display = any ? 'none' : 'block';
+});
+$('#hide').addEventListener('change', (e) => {
+  document.body.classList.toggle('hide', e.target.checked);
+  document.querySelectorAll('.v3.show').forEach((x) => x.classList.remove('show'));
+});
+$('#groups').addEventListener('click', (e) => {
+  const c = e.target.closest('.v3'); if (c && document.body.classList.contains('hide')) c.classList.toggle('show');
+});
+
+// ---------- tabs ----------
+document.querySelectorAll('.tabbar button').forEach((b) => b.addEventListener('click', () => {
+  document.querySelectorAll('.tabbar button').forEach((x) => x.setAttribute('aria-selected', x === b));
+  document.querySelectorAll('.panel').forEach((p) => p.classList.toggle('on', p.id === 'p-' + b.dataset.tab));
+  $('#tools').style.display = b.dataset.tab === 'list' ? '' : 'none';
+  window.scrollTo(0, 0);
+}));
+
+// ---------- mode penanya ----------
+const POOL = G.flatMap((g) => g.v.map((v) => ({ ...v, g: g.n })));
+let used, who, st, cur;
+function fresh() { return { ok: 0, bad: 0, g1: 0, asked: 0, log: [] }; }
+function resetAll() { used = new Set(); who = 1; st = fresh(); cur = null; render(); }
+function score(s) { const a = Math.min(s.ok, 10) * 8 + Math.max(0, Math.min(s.ok, 15) - 10) * 4 - s.bad * 2; return Math.max(0, Math.min(100, a)); }
+function finished() { return st.ok >= 15 || st.asked >= 20; }
+function pick() {
+  if (finished()) return;
+  const c = POOL.filter((v) => !used.has(v.v1) && !(v.g === 1 && st.g1 >= 3));
+  if (!c.length) { $('#ans').textContent = 'Semua kata kerja sudah dipakai.'; return; }
+  cur = c[Math.floor(Math.random() * c.length)];
+  render();
+}
+function mark(kind) {
+  if (!cur) return;
+  used.add(cur.v1); st.asked++;
+  if (cur.g === 1) st.g1++;
+  if (kind === 'ok') st.ok++; else st.bad++;
+  st.log.unshift({ v: cur.v1, v3: cur.v3, k: kind });
+  cur = null; render();
+}
+function render() {
+  $('#whoLabel').textContent = 'Penjawab ' + who;
+  $('#asked').textContent = st.asked + ' / 20 ditanya';
+  $('#big').textContent = cur ? cur.v1 : '—';
+  $('#ans').innerHTML = cur ? 'V3: <b>' + cur.v3 + '</b> <span style="font-size:12px">(Grup ' + cur.g + ')</span>' : (finished() ? '' : 'Ketuk "Kata acak" untuk kata berikutnya');
+  ['#bOk', '#bNo', '#bPs'].forEach((s) => ($(s).disabled = !cur));
+  $('#next').disabled = !!cur || finished();
+  $('#sOk').textContent = st.ok; $('#sNo').textContent = st.bad; $('#sG1').textContent = st.g1 + '/3'; $('#sScore').textContent = score(st);
+  const d = $('#done');
+  d.style.background = ''; d.style.color = ''; d.style.display = 'none';
+  if (finished()) { d.style.display = 'block'; d.textContent = (st.ok >= 15 ? 'Sudah 15 benar.' : 'Sudah 20 pertanyaan.') + ' Selesai: ganti penjawab, lalu taruh HP.'; }
+  else if (st.ok >= 10) { d.style.display = 'block'; d.style.background = 'var(--pl)'; d.style.color = 'var(--p)'; d.textContent = 'Sudah 10 benar. Boleh berhenti atau lanjut sampai 15.'; }
+  const lab = { ok: '✓', no: '✗', ps: 'Pass' };
+  $('#log').innerHTML = st.log.map((l, i) => '<li><span>' + (st.log.length - i) + '. ' + l.v + ' → ' + l.v3 + '</span><span class="m" style="color:' + (l.k === 'ok' ? '#1E7A46' : 'var(--r)') + '">' + lab[l.k] + '</span></li>').join('');
+}
+$('#next').onclick = pick;
+$('#bOk').onclick = () => mark('ok');
+$('#bNo').onclick = () => mark('no');
+$('#bPs').onclick = () => mark('ps');
+$('#swap').onclick = () => { if (cur) used.add(cur.v1); who = who === 1 ? 2 : 1; st = fresh(); cur = null; render(); };
+$('#reset').onclick = () => { if (confirm('Mulai video baru? Semua catatan direset.')) resetAll(); };
+resetAll();
+</script>
+</body>
+</html>
