@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Unit 4: Future Continuous & The Perfect Tenses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --outer:#24103D;
+  --paper:#FFFFFF;
+  --ink:#1F1630;
+  --muted:#65597A;
+  --lav:#F2ECFA;
+  --lav2:#E6DAF5;
+  --plum:#4A1A7A;
+  --plum-deep:#2B0F4A;
+  --plum-ink:#4A1A7A;
+  --red:#C62033;
+  --red-ink:#B01A2C;
+  --aux-bg:#FCE6E9;
+  --vf-bg:#ECE2F8;
+  --ok:#1B7F52;
+  --ok-bg:#E2F4EA;
+  --bad:#B01A2C;
+  --bad-bg:#FCE6E9;
+  --line:#DCD2EA;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --outer:#120820; --paper:#1B1328; --ink:#F1EAFB; --muted:#B7A9CC;
+    --lav:#281C3A; --lav2:#342549; --plum-ink:#CFB3F6; --red-ink:#FF8E99;
+    --aux-bg:#44141D; --vf-bg:#352352; --ok:#72D8A6; --ok-bg:#15372A;
+    --bad:#FF8E99; --bad-bg:#44141D; --line:#3D2E55;
+  }
+}
+:root[data-theme="dark"]{
+  --outer:#120820; --paper:#1B1328; --ink:#F1EAFB; --muted:#B7A9CC;
+  --lav:#281C3A; --lav2:#342549; --plum-ink:#CFB3F6; --red-ink:#FF8E99;
+  --aux-bg:#44141D; --vf-bg:#352352; --ok:#72D8A6; --ok-bg:#15372A;
+  --bad:#FF8E99; --bad-bg:#44141D; --line:#3D2E55;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%;margin:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--outer);color:var(--ink);font-family:var(--body);overflow:hidden;-webkit-font-smoothing:antialiased}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+
+/* ---------- stage ---------- */
+#viewport{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);bottom:calc(64px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;justify-content:center}
+#frame{position:relative;width:calc(1280px * var(--s,1));height:calc(720px * var(--s,1))}
+#stage{position:absolute;left:0;top:0;width:1280px;height:720px;transform:scale(var(--s,1));transform-origin:0 0;background:var(--paper);border-radius:10px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.slide{position:absolute;inset:0;padding:52px 76px 74px;display:none;flex-direction:column}
+.slide.active{display:flex}
+.slide > .notes{display:none}
+.sf{position:absolute;left:76px;right:76px;bottom:26px;display:flex;justify-content:space-between;font-size:14px;color:var(--muted)}
+
+/* ---------- type ---------- */
+h1,h2,h3{font-family:var(--display);margin:0;font-weight:800;letter-spacing:-.015em}
+h2{font-size:46px;line-height:1.05;color:var(--plum-ink)}
+h3{font-size:24px;font-weight:700;line-height:1.15}
+.lede{font-size:21px;color:var(--muted);margin:10px 0 0;max-width:60ch}
+p{margin:0}
+.body{margin-top:30px;flex:1;display:flex;flex-direction:column;gap:22px;min-height:0}
+.big{font-size:22px;line-height:1.5}
+.small{font-size:16px;color:var(--muted)}
+.cols{display:grid;gap:24px}
+.c2{grid-template-columns:1fr 1fr}.c3{grid-template-columns:repeat(3,1fr)}.c4{grid-template-columns:repeat(4,1fr)}
+
+/* ---------- colour-coded grammar ---------- */
+.aux,.vf,.subj{display:inline-block;border-radius:8px;padding:1px 10px;font-weight:700;white-space:nowrap}
+.aux{background:var(--aux-bg);color:var(--red-ink)}
+.vf{background:var(--vf-bg);color:var(--plum-ink)}
+.subj{background:var(--lav);color:var(--ink)}
+.formula{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-family:var(--display);font-size:40px;font-weight:700}
+.formula .aux,.formula .vf,.formula .subj{padding:6px 18px;border-radius:12px}
+.formula .plus{color:var(--muted);font-weight:500}
+.q{font-family:var(--display);font-weight:700;font-size:32px;line-height:1.25;color:var(--ink)}
+.q::before{content:"\201C";color:var(--red)}
+.q::after{content:"\201D";color:var(--red)}
+
+.panel{background:var(--lav);border-radius:16px;padding:22px 26px}
+.panel h3{color:var(--plum-ink);margin-bottom:8px}
+.callout{background:var(--aux-bg);border-radius:14px;padding:16px 22px;font-size:19px;line-height:1.45}
+.callout b{color:var(--red-ink)}
+.ok-t{color:var(--ok);font-weight:700}
+.bad-t{color:var(--bad);font-weight:700;text-decoration:line-through;text-decoration-thickness:2px}
+.mark-ok::before{content:"\2713  ";color:var(--ok);font-weight:700}
+.mark-bad::before{content:"\2717  ";color:var(--bad);font-weight:700}
+.num{font-family:var(--display);font-weight:800;color:var(--red);font-size:30px;line-height:1}
+
+.ex-rows{display:flex;flex-direction:column;gap:14px;font-size:30px;font-family:var(--display);font-weight:500}
+.ex-rows > div{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+
+/* ---------- tables ---------- */
+.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:19px;border-radius:14px;overflow:hidden}
+.tbl th{background:var(--plum);color:#fff;text-align:left;padding:11px 16px;font-family:var(--display);font-weight:700;font-size:18px}
+.tbl td{padding:9px 16px;border-bottom:1px solid var(--line)}
+.tbl tr:nth-child(even) td{background:var(--lav)}
+.tbl td.v3{color:var(--red-ink);font-weight:700}
+.tbl tr.unit td{background:var(--vf-bg)}
+.tbl tr.unit td:first-child{font-weight:700;color:var(--plum-ink)}
+
+/* ---------- dark slides ---------- */
+.dark{background:var(--plum-deep);color:#fff}
+.dark .sf{display:none}
+.section{justify-content:center}
+.section .part{font-family:var(--display);font-size:22px;color:#F7A9B2;font-weight:700}
+.section h1{font-size:96px;line-height:.98;margin-top:10px;color:#fff}
+.section .tag{font-size:26px;margin-top:22px;color:#D9C8F2}
+.section .tag b{color:#fff;background:rgba(198,32,51,.9);padding:2px 12px;border-radius:8px}
+.section .bignum{position:absolute;right:60px;bottom:-60px;font-family:var(--display);font-weight:800;font-size:420px;line-height:1;color:rgba(255,255,255,.06);pointer-events:none}
+
+/* ---------- title ---------- */
+#s-title{padding:64px 80px}
+#s-title .unit{font-size:20px;color:#D9C8F2}
+#s-title h1{font-size:92px;line-height:.95;color:#fff;margin-top:22px}
+#s-title h1 span{display:block;color:#F7A9B2}
+#s-title .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
+#s-title .chips span{border:2px solid rgba(255,255,255,.28);color:#fff;border-radius:999px;padding:6px 16px;font-size:19px;font-weight:700}
+#s-title .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;font-size:18px;color:#D9C8F2}
+#s-title .foot strong{color:#fff;font-size:21px}
+.title-line{position:absolute;left:80px;right:80px;top:470px;height:60px}
+
+/* ---------- timeline svg ---------- */
+.tl-svg{width:100%;height:auto;display:block;overflow:visible}
+.t-axis{stroke:var(--ink);stroke-width:3}
+.t-now{stroke:var(--ink);stroke-width:3}
+.t-lab{fill:var(--muted);font:700 16px var(--body)}
+.t-strong{fill:var(--ink)}
+.t-sub{fill:var(--muted);font:400 13.5px var(--body)}
+.t-red{fill:var(--red)}
+.t-redtxt{fill:var(--red-ink);font:700 16px var(--body)}
+.t-plumtxt{fill:var(--plum-ink);font:700 16px var(--body)}
+.t-oktxt{fill:var(--ok);font:700 16px var(--body)}
+.t-plum{fill:var(--plum)}
+.t-bar{fill:var(--vf-bg);stroke:var(--plum-ink);stroke-width:2}
+.t-curve{fill:none;stroke:var(--plum-ink);stroke-width:3}
+.t-dash{stroke:var(--red);stroke-width:3;stroke-dasharray:6 6}
+.t-flag{stroke:var(--red);stroke-width:3}
+.t-fill-ink{fill:var(--ink)}
+.t-fill-plum{fill:var(--plum-ink)}
+.grow{transform-box:fill-box;transform-origin:left center;animation:grow .9s cubic-bezier(.2,.8,.2,1) both .15s}
+.pop{transform-box:fill-box;transform-origin:center;animation:pop .45s cubic-bezier(.3,1.6,.5,1) both}
+.draw{stroke-dasharray:400;stroke-dashoffset:400;animation:draw 1s ease-out forwards .35s}
+.fade{animation:fade .5s ease-out both .6s}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+.road-btns{display:flex;gap:10px;flex-wrap:wrap}
+.chipbtn{border:2px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 18px;font-weight:700;font-size:17px}
+.chipbtn[aria-pressed="true"]{background:var(--plum);border-color:var(--plum);color:#fff}
+.chipbtn:hover{border-color:var(--plum-ink)}
+
+/* ---------- buttons ---------- */
+.btn{border:2px solid var(--plum-ink);background:var(--paper);color:var(--plum-ink);border-radius:10px;padding:9px 18px;font-weight:700;font-size:16px}
+.btn.primary{background:var(--plum);border-color:var(--plum);color:#fff}
+.btn.red{background:var(--red);border-color:var(--red);color:#fff}
+.btn:hover{filter:brightness(1.08)}
+.ctrls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:auto}
+.score{font-family:var(--display);font-weight:700;font-size:22px;margin-left:8px}
+.score.good{color:var(--ok)}
+
+/* ---------- exercises ---------- */
+.inst{font-size:20px;color:var(--muted);margin-top:8px}
+.slide[data-timer] .body{margin-top:20px;gap:14px}
+.qgrid{display:grid;grid-template-columns:1fr 1fr;grid-auto-flow:column;grid-template-rows:repeat(4,auto);gap:8px 40px;font-size:20.5px;line-height:1.62}
+.qgrid.one{grid-auto-flow:row;grid-template-rows:none;grid-template-columns:repeat(4,1fr)}
+.qi{display:flex;gap:12px;align-items:baseline;padding:4px 10px 4px 6px;border-radius:10px}
+.qi .n{font-family:var(--display);font-weight:800;color:var(--red);min-width:22px}
+.qi.ok{background:var(--ok-bg)}
+.qi.bad{background:var(--bad-bg)}
+.blank{font:inherit;font-weight:700;color:var(--plum-ink);border:none;border-bottom:2.5px solid var(--plum-ink);background:transparent;padding:0 4px;margin:0 2px;border-radius:0;outline:none;text-align:center}
+.blank:focus{background:var(--vf-bg);border-radius:6px 6px 0 0}
+.blank.ok{color:var(--ok);border-color:var(--ok)}
+.blank.bad{color:var(--bad);border-color:var(--bad)}
+.hintv{font-size:.8em;color:var(--muted);font-style:italic;white-space:nowrap}
+.ttag{display:none;font-size:14px;font-weight:700;color:#fff;background:var(--plum);border-radius:6px;padding:1px 8px;margin-left:6px;white-space:nowrap;line-height:1.6}
+.show-tags .ttag{display:inline-block}
+.timerbtn{margin-left:auto}
+
+/* ---------- misc interactive ---------- */
+.irr{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.irr .v3{cursor:pointer;transition:background .2s}
+.hide-v3 .irr td.v3 span,.hide-v2 .irr td.v2 span{visibility:hidden}
+.hide-v3 .irr td.v3,.hide-v2 .irr td.v2{background:var(--lav2)!important;cursor:pointer}
+.irr td.shown span{visibility:visible!important}
+.irr td.v2{cursor:pointer}
+
+.subjects{display:flex;flex-wrap:wrap;gap:10px}
+.sbtn{border:2px solid var(--line);background:var(--paper);color:var(--ink);border-radius:12px;padding:8px 14px;font-weight:700;font-size:18px;min-width:96px;text-align:center}
+.sbtn .ans{display:block;font-size:15px;color:var(--muted);font-weight:400}
+.sbtn.rev-have{border-color:var(--plum-ink)}
+.sbtn.rev-have .ans{color:var(--plum-ink);font-weight:700}
+.sbtn.rev-has{border-color:var(--red)}
+.sbtn.rev-has .ans{color:var(--red-ink);font-weight:700}
+
+.game{background:var(--plum-deep);color:#fff;border-radius:18px;padding:24px 26px;display:flex;flex-direction:column;gap:14px}
+.game .gq{font-family:var(--display);font-size:30px;font-weight:700;line-height:1.25;min-height:80px}
+.game .gq u{text-decoration:none;border-bottom:3px solid #F7A9B2;padding:0 26px}
+.game .gbtns{display:flex;gap:12px}
+.game .gbtns button{flex:1;border:none;border-radius:12px;padding:14px;font-family:var(--display);font-weight:800;font-size:26px}
+.game .g-since{background:#fff;color:var(--plum)}
+.game .g-for{background:var(--red);color:#fff}
+.game .gfb{font-size:18px;min-height:26px;color:#D9C8F2}
+.game .gfb.y{color:#8CF0BD}.game .gfb.n{color:#FFB0B8}
+.game .gmeta{display:flex;justify-content:space-between;font-size:16px;color:#D9C8F2}
+
+.mist{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.mcard{text-align:left;border:2px dashed var(--line);background:var(--paper);color:var(--ink);border-radius:16px;padding:20px 24px;display:flex;flex-direction:column;gap:8px;font-size:22px;min-height:150px}
+.mcard .w{font-family:var(--display);font-weight:700;font-size:28px;color:var(--bad)}
+.mcard .fix{display:none}
+.mcard.open{border-style:solid;border-color:var(--ok);background:var(--ok-bg)}
+.mcard.open .fix{display:block}
+.mcard.open .w{text-decoration:line-through}
+.mcard .r{font-size:17px;color:var(--muted)}
+.mcard .c{font-family:var(--display);font-weight:700;font-size:28px;color:var(--ok)}
+.mcard .tap{font-size:15px;color:var(--muted)}
+.mcard.open .tap{display:none}
+
+.own{display:flex;flex-direction:column;gap:10px}
+.own .row{display:grid;grid-template-columns:34px 230px 1fr auto;gap:14px;align-items:center}
+.own .p{font-size:17px;line-height:1.3}
+.own .p b{display:block;color:var(--plum-ink);font-size:15px}
+.own input{font:inherit;font-size:18px;padding:9px 12px;border:2px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);width:100%}
+.own input.ok{border-color:var(--ok);background:var(--ok-bg)}
+.own input.bad{border-color:var(--bad)}
+.own .fb{grid-column:3 / 5;font-size:15px;color:var(--muted);min-height:0}
+.own .fb:empty{display:none}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.steps .st{background:var(--lav);border-radius:16px;padding:20px}
+.steps .st h3{color:var(--plum-ink);margin:10px 0 6px}
+.steps .st p{font-size:17.5px;line-height:1.4}
+
+/* ---------- toolbar ---------- */
+#bar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(10px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:4px;background:rgba(20,8,36,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:5px;z-index:20;color:#fff}
+#bar button{background:transparent;border:none;color:#fff;width:42px;height:42px;border-radius:999px;display:grid;place-items:center}
+#bar button:hover,#bar button[aria-pressed="true"]{background:rgba(255,255,255,.14)}
+#bar svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#count{font-weight:700;font-size:15px;min-width:74px;text-align:center;font-variant-numeric:tabular-nums}
+#prog{position:fixed;left:0;top:env(safe-area-inset-top,0px);height:4px;background:var(--red);transition:width .3s;z-index:21}
+
+#notesPanel{visibility:hidden;position:fixed;right:0;top:0;bottom:0;width:min(400px,92vw);background:var(--paper);color:var(--ink);z-index:30;transform:translateX(105%);transition:transform .3s ease,visibility .3s;padding:calc(24px + env(safe-area-inset-top,0px)) 26px calc(24px + env(safe-area-inset-bottom,0px));box-shadow:-20px 0 60px rgba(0,0,0,.35);overflow:auto}
+#notesPanel.open{transform:none;visibility:visible}
+#notesPanel h3{font-size:20px;color:var(--plum-ink)}
+#notesPanel .nt{font-size:13px;color:var(--muted);margin-top:4px}
+#notesText{font-size:18px;line-height:1.55;margin-top:16px;white-space:pre-line}
+#notesPanel .x{position:absolute;right:14px;top:calc(14px + env(safe-area-inset-top,0px));border:none;background:var(--lav);color:var(--ink);width:36px;height:36px;border-radius:50%;font-size:20px}
+#notesPanel .keys{margin-top:26px;font-size:14px;color:var(--muted);line-height:1.8;border-top:1px solid var(--line);padding-top:14px}
+kbd{font-family:var(--body);background:var(--lav);border-radius:5px;padding:1px 7px;font-size:13px;color:var(--ink)}
+
+#overview{position:fixed;inset:0;background:rgba(18,8,32,.94);z-index:40;display:none;overflow:auto;padding:calc(30px + env(safe-area-inset-top,0px)) 30px calc(30px + env(safe-area-inset-bottom,0px))}
+#overview.open{display:block}
+#overview h3{color:#fff;font-size:24px;margin:0 auto 18px;max-width:1200px}
+#ovGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;max-width:1200px;margin:0 auto}
+#ovGrid button{text-align:left;background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px 14px;min-height:78px;display:flex;flex-direction:column;gap:4px}
+#ovGrid button b{font-family:var(--display);color:#F7A9B2;font-size:15px}
+#ovGrid button.sec{background:rgba(198,32,51,.25)}
+#ovGrid button.cur{outline:2px solid #fff}
+#ovGrid button span{font-size:15px;line-height:1.3}
+
+#timer{position:fixed;right:calc(14px + env(safe-area-inset-right,0px));top:calc(14px + env(safe-area-inset-top,0px));z-index:25;background:var(--plum-deep);color:#fff;border-radius:16px;padding:10px 12px 10px 18px;display:none;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14)}
+#timer.on{display:flex}
+#timer .tt{font-family:var(--display);font-weight:800;font-size:30px;font-variant-numeric:tabular-nums;min-width:92px}
+#timer button{border:none;background:rgba(255,255,255,.12);color:#fff;border-radius:10px;height:34px;padding:0 10px;font-size:14px;font-weight:700}
+#timer.done{background:var(--red);animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{filter:brightness(1.3)}}
+
+/* ---------- fluid (phones, portrait) ---------- */
+body.fluid{overflow:auto}
+body.fluid #viewport{position:static;display:block;padding:12px 12px 90px}
+body.fluid #frame{width:auto;height:auto}
+body.fluid #stage{position:relative;width:100%;height:auto;transform:none;border-radius:14px}
+body.fluid .slide{position:relative;padding:26px 20px 60px;min-height:70vh}
+body.fluid .sf{left:20px;right:20px;bottom:18px}
+body.fluid h2{font-size:32px}
+body.fluid .section h1,body.fluid #s-title h1{font-size:54px}
+body.fluid .section .bignum{font-size:200px;bottom:-20px}
+body.fluid .c2,body.fluid .c3,body.fluid .c4,body.fluid .qgrid,body.fluid .irr,body.fluid .mist,body.fluid .steps{grid-template-columns:1fr!important}
+body.fluid .qgrid{grid-auto-flow:row;grid-template-rows:none}
+body.fluid .formula{font-size:26px}
+body.fluid .q{font-size:24px}
+body.fluid .ex-rows{font-size:22px}
+body.fluid .own .row{grid-template-columns:30px 1fr}
+body.fluid .own .row input,body.fluid .own .row .btn,body.fluid .own .fb{grid-column:1 / -1}
+body.fluid .title-line{position:static;margin-top:30px}
+body.fluid .tbl{font-size:15px}
+body.fluid .scroll-x{overflow-x:auto}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .draw{stroke-dashoffset:0}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div id="viewport"><div id="frame"><main id="stage">
+
+<!-- 1 -->
+<section class="slide dark" id="s-title" data-title="Title">
+  <div class="unit">English grammar, Unit 4</div>
+  <h1>Future Continuous<span>& the Perfect Tenses</span></h1>
+  <div class="chips"><span>will be + V-ing</span><span>have / has + V3</span><span>had + V3</span><span>will have + V3</span></div>
+  <div class="title-line" data-tl="title"></div>
+  <div class="foot"><div>Four tenses that connect two different points in time</div><strong>SMK Katolik St. Mikael Surakarta</strong></div>
+  <aside class="notes">Opening: ask the class two questions. 'What will you do at 8 p.m. tonight?' and 'Have you finished your homework?' Do not correct them yet. Tell them that by the end of this unit they will be able to answer both correctly.</aside>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-title="What we learned last time">
+  <h2>What we learned last time</h2>
+  <p class="lede">Three tenses you already know. We build on these today.</p>
+  <div class="body">
+    <div class="cols c3">
+      <div class="panel"><h3>Present Continuous</h3><p class="big"><span class="aux">am / is / are</span> + <span class="vf">V-ing</span></p><p class="big" style="margin-top:14px">I <span class="aux">am</span> <span class="vf">studying</span> now.</p><p class="small" style="margin-top:8px">Happening right now</p></div>
+      <div class="panel"><h3>Past Continuous</h3><p class="big"><span class="aux">was / were</span> + <span class="vf">V-ing</span></p><p class="big" style="margin-top:14px">I <span class="aux">was</span> <span class="vf">studying</span> at 8 p.m.</p><p class="small" style="margin-top:8px">Was happening in the past</p></div>
+      <div class="panel"><h3>Simple Future</h3><p class="big"><span class="aux">will</span> + <span class="vf">V1</span></p><p class="big" style="margin-top:14px">I <span class="aux">will</span> <span class="vf">study</span> tonight.</p><p class="small" style="margin-top:8px">Will happen later</p></div>
+    </div>
+    <div class="callout">Notice: all three use <b>V-ing</b> or <b>V1</b>. Today we add V-ing in the future, and a new verb form: <b>V3</b>.</div>
+  </div>
+  <aside class="notes">Keep this to four minutes. Point at random students and ask them to make one sentence in each tense. This is a warm-up, not new teaching.</aside>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-title="Learning objectives">
+  <h2>Learning objectives</h2>
+  <p class="lede">By the end of this unit, you will be able to:</p>
+  <div class="body">
+    <div class="cols c2" style="gap:22px 40px">
+      <div style="display:flex;gap:18px"><span class="num">1</span><div><h3>Use the Future Continuous</h3><p class="big">Say what will be happening at a specific time in the future.</p></div></div>
+      <div style="display:flex;gap:18px"><span class="num">2</span><div><h3>Use the Present Perfect</h3><p class="big">Talk about experience and about past actions that matter now.</p></div></div>
+      <div style="display:flex;gap:18px"><span class="num">3</span><div><h3>Use the Past Perfect</h3><p class="big">Show which of two past events happened first.</p></div></div>
+      <div style="display:flex;gap:18px"><span class="num">4</span><div><h3>Use the Future Perfect</h3><p class="big">Say that something will be finished before a future deadline.</p></div></div>
+    </div>
+  </div>
+  <aside class="notes">Read each objective aloud. Ask one student to repeat objective 3 in their own words. Tell them objective 2 is the hardest and we will spend the most time on it.</aside>
+</section>
+
+<!-- 4 -->
+<section class="slide" data-title="Today's road map">
+  <h2>Today's road map</h2>
+  <p class="lede">Four new tenses, and where they sit on the timeline. Tap a tense to zoom in.</p>
+  <div class="body">
+    <div class="road-btns" id="roadBtns">
+      <button class="chipbtn" aria-pressed="true" data-k="road">All four</button>
+      <button class="chipbtn" aria-pressed="false" data-k="pastp">Past Perfect</button>
+      <button class="chipbtn" aria-pressed="false" data-k="presp">Present Perfect</button>
+      <button class="chipbtn" aria-pressed="false" data-k="fc">Future Continuous</button>
+      <button class="chipbtn" aria-pressed="false" data-k="futp">Future Perfect</button>
+    </div>
+    <div id="roadTl" data-tl="road" style="padding:0 10px"></div>
+    <div class="callout" style="margin-top:auto"><b>The key idea for this whole unit.</b> Continuous tenses ask: "What is / was / will be in progress?" Perfect tenses ask: "Is it already finished by that moment?"</div>
+  </div>
+  <aside class="notes">Draw this timeline on the whiteboard too. Students remember a timeline they watched being drawn much better than one that simply appears on a screen. Repeat the two key questions at the bottom twice.</aside>
+</section>
+
+<!-- 5 -->
+<section class="slide dark section" data-title="Part 1: Future Continuous" data-sec>
+  <div class="part">Part 1</div><h1>Future Continuous</h1>
+  <p class="tag"><b>will be + V-ing</b> something in progress at a future moment</p>
+  <div class="bignum">1</div>
+  <aside class="notes">Start here because it is the easiest of the four. Students already know V-ing from present and past continuous. Only the auxiliary changes.</aside>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-title="Future Continuous: the big idea">
+  <h2>Future Continuous: the big idea</h2>
+  <p class="lede">An action that will be in progress at a certain time in the future.</p>
+  <div class="body">
+    <p class="q">At 8 p.m. tomorrow, I will be studying English.</p>
+    <div data-tl="fc"></div>
+    <div class="cols c2">
+      <div class="panel"><h3>Simple Future</h3><p class="big">"I <span class="aux">will</span> <span class="vf">study</span> tomorrow."</p><p class="small">Only says the action will happen. No exact moment.</p></div>
+      <div class="panel" style="background:var(--vf-bg)"><h3>Future Continuous</h3><p class="big">"I <span class="aux">will be</span> <span class="vf">studying</span> at 8 p.m."</p><p class="small">The action is already in progress at that moment.</p></div>
+    </div>
+  </div>
+  <aside class="notes">Physical demonstration: start writing on the board, then stop and say 'At this exact second I am writing.' Then point to the clock: 'At 8 p.m. tomorrow I will be writing.' The words ALREADY STARTED are the key idea.</aside>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-title="Future Continuous: the formula">
+  <h2>Future Continuous: the formula</h2>
+  <p class="lede">One pattern for every subject. Nothing changes.</p>
+  <div class="body">
+    <div class="formula"><span class="subj">Subject</span><span class="plus">+</span><span class="aux">will be</span><span class="plus">+</span><span class="vf">V-ing</span></div>
+    <div class="callout">No he/she/it rule here. <b>I, you, he, she, we, they</b> all use <b>will be</b>.</div>
+    <div class="ex-rows">
+      <div>I <span class="aux">will be</span> <span class="vf">working</span> at 9 a.m. tomorrow.</div>
+      <div>She <span class="aux">will be</span> <span class="vf">sleeping</span> when you arrive.</div>
+      <div>They <span class="aux">will be</span> <span class="vf">waiting</span> for us at the station.</div>
+    </div>
+  </div>
+  <aside class="notes">Have students copy the three sentences using two pen colours: red for WILL BE, purple for the V-ing. The screen already uses the same colours, so they can copy exactly what they see.</aside>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-title="When do we use it?">
+  <h2>When do we use it?</h2>
+  <p class="lede">Three common situations.</p>
+  <div class="body">
+    <div class="cols c3">
+      <div class="panel"><span class="num">1</span><h3 style="margin-top:12px">In progress at an exact future time</h3><p class="big">At 10 o'clock tomorrow, I <span class="aux">will be</span> <span class="vf">taking</span> the test.</p></div>
+      <div class="panel"><span class="num">2</span><h3 style="margin-top:12px">Interrupted by another future action</h3><p class="big">She <span class="aux">will be</span> <span class="vf">cooking</span> when her father comes home.</p></div>
+      <div class="panel"><span class="num">3</span><h3 style="margin-top:12px">A polite question about plans</h3><p class="big"><span class="aux">Will</span> you <span class="aux">be</span> <span class="vf">using</span> the computer this afternoon?</p></div>
+    </div>
+    <div class="callout">Use 3 is very useful at work. It sounds more polite than <b>"Will you use the computer?"</b></div>
+  </div>
+  <aside class="notes">Use 2 links back to past continuous (was cooking when he came home). Point that connection out clearly. Use 3 is worth practising because students will need it in industrial placement.</aside>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-title="Time signals for Future Continuous">
+  <h2>Time signals for Future Continuous</h2>
+  <p class="lede">These words tell you the Future Continuous is the right choice.</p>
+  <div class="body">
+    <div class="cols c3">
+      <div class="panel"><h3>at + exact time</h3><p class="big">at 8 p.m. tomorrow<br>at 10 o'clock tonight</p></div>
+      <div class="panel"><h3>this time + future</h3><p class="big">this time tomorrow<br>at this time next week<br>this time next month</p></div>
+      <div class="panel"><h3>when / while + clause</h3><p class="big">when you arrive<br>while you are sleeping</p></div>
+    </div>
+    <div class="callout"><b>Careful with when and while.</b> After when / while, do not use <i>will</i>. Use the simple present.<br>
+      <span class="mark-ok">I will be sleeping when you <b style="color:var(--ok)">arrive</b>.</span> &nbsp;&nbsp; <span class="mark-bad">I will be sleeping when you <span class="bad-t">will arrive</span>.</span></div>
+  </div>
+  <aside class="notes">The 'no will after when' rule is the single most common mistake with this tense. Write both sentences on the board, one with a tick and one with a cross, and leave them there for the rest of the lesson.</aside>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-title="Future Continuous: negative and question">
+  <h2>Negative and question forms</h2>
+  <p class="lede">Future Continuous: the pattern barely changes.</p>
+  <div class="body">
+    <div class="cols c2">
+      <div class="panel"><h3>Negative</h3><p class="big"><span class="subj">S</span> + <span class="aux">will not (won't) be</span> + <span class="vf">V-ing</span></p>
+        <p class="big" style="margin-top:14px">I <span class="aux">won't be</span> <span class="vf">working</span> tomorrow.<br>She <span class="aux">won't be</span> <span class="vf">joining</span> us tonight.<br>They <span class="aux">won't be</span> <span class="vf">waiting</span> for you.</p></div>
+      <div class="panel"><h3>Question</h3><p class="big"><span class="aux">Will</span> + <span class="subj">S</span> + <span class="aux">be</span> + <span class="vf">V-ing</span> ?</p>
+        <p class="big" style="margin-top:14px"><span class="aux">Will</span> you <span class="aux">be</span> <span class="vf">using</span> the lab?<br><span class="small">Yes, I will. / No, I won't.</span><br>What <span class="aux">will</span> you <span class="aux">be</span> <span class="vf">doing</span> at 7 p.m.?<br><span class="small">I will be having dinner.</span></p></div>
+    </div>
+  </div>
+  <aside class="notes">Pair drill for five minutes: student A asks 'What will you be doing at ___?' and student B answers in a full sentence. Write six times on the board for them to choose from.</aside>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-title="Exercise 1: Future Continuous" data-timer="10">
+  <h2>Exercise 1: Future Continuous</h2>
+  <p class="inst">Complete each sentence with <b>will be + V-ing</b>. Then swap books with your partner and check.</p>
+  <div class="body" data-ex="ex1"></div>
+  <aside class="notes">Answer key: 1 will be working, 2 will be having, 3 will be travelling, 4 Will ... be using, 5 will not be waiting / won't be waiting, 6 will be repairing, 7 will ... be doing, 8 will not be attending / won't be attending. Walk around and watch for students writing 'will be work' without -ing.</aside>
+</section>
+
+<!-- 12 -->
+<section class="slide dark section" data-title="Part 2: V3" data-sec>
+  <div class="part">Part 2</div><h1>Before the perfect tenses: V3</h1>
+  <p class="tag">All three perfect tenses need <b>the third form of the verb</b></p>
+  <div class="bignum">2</div>
+  <aside class="notes">Be honest with the class: if their V3 is weak, every perfect tense will fail. Spend real time here. This is the foundation slide set.</aside>
+</section>
+
+<!-- 13 -->
+<section class="slide" data-title="V1, V2 and V3">
+  <h2>V1, V2 and V3</h2>
+  <p class="lede">Every English verb has three main forms.</p>
+  <div class="body">
+    <div class="cols c3">
+      <div class="panel"><div class="formula"><span class="subj">V1</span></div><h3 style="margin-top:14px">Base form</h3><p class="big">eat, go, write, work</p><p class="small">Used in: Simple Present, Future</p></div>
+      <div class="panel"><div class="formula"><span class="subj">V2</span></div><h3 style="margin-top:14px">Past form</h3><p class="big">ate, went, wrote, worked</p><p class="small">Used in: Simple Past</p></div>
+      <div class="panel" style="background:var(--aux-bg)"><div class="formula"><span class="aux" style="background:var(--paper)">V3</span></div><h3 style="margin-top:14px">Past participle</h3><p class="big">eaten, gone, written, worked</p><p class="small"><b style="color:var(--red-ink)">Used in: all perfect tenses (today)</b></p></div>
+    </div>
+  </div>
+  <aside class="notes">Write eat - ate - eaten on the board. Have the whole class say it aloud three times. Then do go - went - gone. Rhythm and repetition matter more than explanation here.</aside>
+</section>
+
+<!-- 14 -->
+<section class="slide" data-title="Regular verbs">
+  <h2>Regular verbs: V2 and V3 are the same</h2>
+  <p class="lede">Good news: for regular verbs you only add -ed, and V2 = V3.</p>
+  <div class="body" style="gap:14px">
+    <div class="formula" style="font-size:30px"><span class="subj">V1</span><span class="plus">+</span><span class="vf">-ed</span><span class="plus">=</span><span class="aux">V2 and V3</span></div>
+    <div class="scroll-x"><table class="tbl" id="regTbl">
+      <thead><tr><th>V1</th><th>V2</th><th>V3</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td>work</td><td>worked</td><td class="v3">worked</td><td>to do a job</td></tr>
+        <tr><td>study</td><td>studied</td><td class="v3">studied</td><td>to learn</td></tr>
+        <tr><td>finish</td><td>finished</td><td class="v3">finished</td><td>to complete</td></tr>
+        <tr><td>repair</td><td>repaired</td><td class="v3">repaired</td><td>to fix</td></tr>
+        <tr><td>measure</td><td>measured</td><td class="v3">measured</td><td>to check size</td></tr>
+        <tr><td>clean</td><td>cleaned</td><td class="v3">cleaned</td><td>to make clean</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ctrls"><button class="btn" id="addWorkshop">Tambah kata bengkel</button></div>
+  </div>
+  <aside class="notes">Tap 'Tambah kata bengkel' to add workshop verbs: weld, drill, assemble, tighten. Making it their subject makes it stick. Ask students for more verbs from their own jurusan.</aside>
+</section>
+
+<!-- 15 -->
+<section class="slide" data-title="Irregular verbs">
+  <h2>Irregular verbs: memorise these</h2>
+  <p class="lede">These verbs do not follow the -ed rule. The red column is the one you need.</p>
+  <div class="body" style="gap:14px">
+    <div class="irr" id="irr"></div>
+    <div class="ctrls">
+      <button class="btn primary" id="hideV3">Tutup kolom V3</button>
+      <button class="btn" id="hideV2">Tutup kolom V2</button>
+      <span class="small">Klik sel yang tertutup untuk membuka satu per satu.</span>
+    </div>
+  </div>
+  <aside class="notes">Quick game: close the V3 column and point at students to say the missing form. Click each covered cell to reveal it. Note that 'read' is spelled the same in all three forms but pronounced reed - red - red.</aside>
+</section>
+
+<!-- 16 -->
+<section class="slide" data-title="Exercise 2: V3 forms" data-timer="2">
+  <h2>Exercise 2: write the V3 form</h2>
+  <p class="inst">Warm-up before we start the perfect tenses. Two minutes only.</p>
+  <div class="body" data-ex="ex2"></div>
+  <aside class="notes">Answer key: 1 gone, 2 eaten, 3 written, 4 finished, 5 seen, 6 studied, 7 drunk, 8 taken. Do this orally as well as in writing so you can hear the pronunciation.</aside>
+</section>
+
+<!-- 17 -->
+<section class="slide dark section" data-title="Part 3: Present Perfect" data-sec>
+  <div class="part">Part 3</div><h1>Present Perfect</h1>
+  <p class="tag"><b>have / has + V3</b> the past that still matters now</p>
+  <div class="bignum">3</div>
+  <aside class="notes">Bridge for Indonesian speakers: we have the words 'sudah' and 'pernah'. English has no single word for these, so it uses have/has + V3 instead. Give this bridge in English but let students make the connection themselves.</aside>
+</section>
+
+<!-- 18 -->
+<section class="slide" data-title="Present Perfect: the big idea">
+  <h2>Present Perfect: the big idea</h2>
+  <p class="lede">The action happened in the past, but the result is important now.</p>
+  <div class="body">
+    <div data-tl="presp"></div>
+    <div class="cols c2">
+      <div class="panel" style="background:var(--ok-bg)"><h3 class="mark-ok">Present Perfect</h3><p class="q" style="font-size:28px">I have lost my key.</p><p class="small" style="margin-top:8px">I lost it earlier, and right now I still cannot open my door. The result matters.</p></div>
+      <div class="panel"><h3>Simple Past</h3><p class="q" style="font-size:28px">I lost my key yesterday.</p><p class="small" style="margin-top:8px">This only tells us when it happened. It says nothing about now.</p></div>
+    </div>
+  </div>
+  <aside class="notes">Best demonstration in the unit: take your key out, hide it, then say 'I have lost my key' and mime being locked out. Students see the present result. Do not rush this slide.</aside>
+</section>
+
+<!-- 19 -->
+<section class="slide" data-title="Present Perfect: the formula">
+  <h2>Present Perfect: the formula</h2>
+  <p class="lede">Only one part changes: have or has.</p>
+  <div class="body" style="gap:18px">
+    <div class="formula"><span class="subj">Subject</span><span class="plus">+</span><span class="aux">have / has</span><span class="plus">+</span><span class="vf">V3</span></div>
+    <div class="cols c2">
+      <div class="panel"><h3>have</h3><p class="big">I, you, we, they, plural subjects</p><p class="big" style="margin-top:6px">They <span class="aux">have</span> <span class="vf">arrived</span>.</p></div>
+      <div class="panel"><h3 style="color:var(--red-ink)">has</h3><p class="big">he, she, it, singular subjects</p><p class="big" style="margin-top:6px">Rina <span class="aux">has</span> <span class="vf">arrived</span>.</p></div>
+    </div>
+    <div><p class="small" style="margin-bottom:10px">Quick check: guess first, then tap each subject.</p>
+      <div class="subjects" id="hh"></div></div>
+  </div>
+  <aside class="notes">Trick to give them: if the subject can be replaced by HE, SHE or IT, use HAS. Everything else takes HAVE. Same rule they already know from simple present (he goes, she works). Point at a subject, let the class shout HAVE or HAS, then tap to check.</aside>
+</section>
+
+<!-- 20 -->
+<section class="slide" data-title="Three uses of the Present Perfect">
+  <h2>Three uses of the Present Perfect</h2>
+  <p class="lede">Different situations, but always the same formula.</p>
+  <div class="body">
+    <div class="cols c3">
+      <div class="panel"><span class="num">1</span><h3 style="margin-top:12px">Life experience</h3><p class="big"><span class="aux">Have</span> you ever <span class="vf">eaten</span> sushi?<br>I <span class="aux">have</span> never <span class="vf">been</span> to Jakarta.</p><p class="small" style="margin-top:10px">Signals: ever, never, before</p></div>
+      <div class="panel"><span class="num">2</span><h3 style="margin-top:12px">Finished action, result now</h3><p class="big">She <span class="aux">has</span> just <span class="vf">left</span> the room.<br>I <span class="aux">haven't</span> <span class="vf">finished</span> my work yet.</p><p class="small" style="margin-top:10px">Signals: just, already, yet</p></div>
+      <div class="panel"><span class="num">3</span><h3 style="margin-top:12px">From the past until now</h3><p class="big">I <span class="aux">have</span> <span class="vf">studied</span> here since 2019.<br>He <span class="aux">has</span> <span class="vf">worked</span> here for ten years.</p><p class="small" style="margin-top:10px">Signals: since, for</p></div>
+    </div>
+  </div>
+  <aside class="notes">Use 1 is the easiest and the most fun. Start there. Use 3 is where students make the since/for mistake, so slow down on it.</aside>
+</section>
+
+<!-- 21 -->
+<section class="slide" data-title="Since, for, and the small words">
+  <h2>Since, for, and the small words</h2>
+  <p class="lede">Get these right and most of your sentences will be correct.</p>
+  <div class="body">
+    <div class="cols" style="grid-template-columns:1.25fr 1fr;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="cols c2" style="gap:16px">
+          <div class="panel"><h3>since + a starting point</h3><p class="big">since 2019<br>since Monday<br>since I was a child</p><p class="small">Answers: when did it start?</p></div>
+          <div class="panel"><h3 style="color:var(--red-ink)">for + a length of time</h3><p class="big">for three years<br>for two hours<br>for a long time</p><p class="small">Answers: how long?</p></div>
+        </div>
+        <div class="cols c3" style="gap:12px">
+          <div><h3 style="font-size:20px">already</h3><p style="font-size:17px">I have <b>already</b> eaten.</p><p class="small">between have/has and V3</p></div>
+          <div><h3 style="font-size:20px">just</h3><p style="font-size:17px">She has <b>just</b> left.</p><p class="small">between have/has and V3</p></div>
+          <div><h3 style="font-size:20px">yet</h3><p style="font-size:17px">I haven't eaten <b>yet</b>.</p><p class="small">at the end of the sentence</p></div>
+        </div>
+      </div>
+      <div class="game" id="sfGame">
+        <div class="gmeta"><span>Since or for?</span><span id="sfCount">1 / 10</span></div>
+        <div class="gq" id="sfQ"></div>
+        <div class="gbtns"><button class="g-since" data-a="since">SINCE</button><button class="g-for" data-a="for">FOR</button></div>
+        <div class="gfb" id="sfFb">Pilih jawaban yang benar.</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Fast drill: read the sentence on the game card, class shouts SINCE or FOR, then tap the answer. Ten rounds. The most common error is 'since three years'.</aside>
+</section>
+
+<!-- 22 -->
+<section class="slide" data-title="Present Perfect: negative and question">
+  <h2>Negative and question forms</h2>
+  <p class="lede">Present Perfect: add not, or move have/has to the front.</p>
+  <div class="body">
+    <div class="cols c2">
+      <div class="panel"><h3>Negative</h3><p class="big"><span class="subj">S</span> + <span class="aux">have not / has not</span> + <span class="vf">V3</span></p><p class="small">have not = haven't &nbsp; has not = hasn't</p>
+        <p class="big" style="margin-top:14px">I <span class="aux">haven't</span> <span class="vf">finished</span> my work.<br>She <span class="aux">hasn't</span> <span class="vf">arrived</span> yet.</p></div>
+      <div class="panel"><h3>Question</h3><p class="big"><span class="aux">Have / Has</span> + <span class="subj">S</span> + <span class="vf">V3</span> ?</p>
+        <p class="big" style="margin-top:14px"><span class="aux">Have</span> you <span class="vf">finished</span>?<br><span class="small">Yes, I have. / No, I haven't.</span><br><span class="aux">Has</span> she <span class="vf">called</span> you?<br><span class="small">Yes, she has. / No, she hasn't.</span></p></div>
+    </div>
+  </div>
+  <aside class="notes">Insist on the short answer form: 'Yes, I have.' NOT 'Yes, I have finished.' Students who repeat the verb are copying Indonesian sentence habits.</aside>
+</section>
+
+<!-- 23 -->
+<section class="slide" data-title="Present Perfect vs Simple Past">
+  <h2>Present Perfect vs Simple Past</h2>
+  <p class="lede">The hardest part of this unit. The time expression decides.</p>
+  <div class="body" style="gap:16px">
+    <div class="scroll-x"><table class="tbl">
+      <thead><tr><th></th><th>Present Perfect</th><th>Simple Past</th></tr></thead>
+      <tbody>
+        <tr><td><b>Formula</b></td><td>have / has + V3</td><td>V2</td></tr>
+        <tr><td><b>Is the time stated?</b></td><td>No exact time given</td><td>Exact time is given</td></tr>
+        <tr><td><b>Signal words</b></td><td>ever, never, just, already, yet, since, for</td><td>yesterday, last night, ago, in 2020, this morning</td></tr>
+        <tr><td><b>Focus</b></td><td>The result now</td><td>When it happened</td></tr>
+        <tr><td><b>Example</b></td><td>I have seen that film.</td><td>I saw that film last week.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout"><b>Simple rule to remember:</b> if you see <b>yesterday</b>, <b>last</b>, or <b>ago</b>, use the Simple Past. Always.</div>
+  </div>
+  <aside class="notes">Write the simple rule at the bottom in large letters on the board. It will get students through about 80% of exam questions on this contrast.</aside>
+</section>
+
+<!-- 24 -->
+<section class="slide" data-title="Exercise 3: Present Perfect" data-timer="10">
+  <h2>Exercise 3: Present Perfect</h2>
+  <p class="inst">Complete with <b>have / has + V3</b>. Numbers 3 and 7 are questions, so be careful with the word order.</p>
+  <div class="body" data-ex="ex3"></div>
+  <aside class="notes">Answer key: 1 have finished, 2 hasn't eaten, 3 Have ... visited, 4 have lived, 5 has worked, 6 haven't seen, 7 Has ... arrived, 8 has just repaired.</aside>
+</section>
+
+<!-- 25 -->
+<section class="slide" data-title="Exercise 4: Present Perfect or Simple Past?" data-timer="10">
+  <h2>Exercise 4: Present Perfect or Simple Past?</h2>
+  <p class="inst">Look at the time expression first. Compare each pair (1 and 2, 3 and 4...): the difference is always the time expression.</p>
+  <div class="body" data-ex="ex4"></div>
+  <aside class="notes">Answer key: 1 saw, 2 have seen, 3 went, 4 has never been / has never gone, 5 finished, 6 have already finished, 7 Have ... done, 8 did ... do. Discuss the pairs side by side; the contrast is the whole point of this exercise.</aside>
+</section>
+
+<!-- 26 -->
+<section class="slide dark section" data-title="Part 4: Past Perfect" data-sec>
+  <div class="part">Part 4</div><h1>Past Perfect</h1>
+  <p class="tag"><b>had + V3</b> the past before the past</p>
+  <div class="bignum">4</div>
+  <aside class="notes">Good news for the class: if they understand present perfect, past perfect is much easier. Only the auxiliary changes, and there is no singular/plural rule at all.</aside>
+</section>
+
+<!-- 27 -->
+<section class="slide" data-title="Past Perfect: the big idea">
+  <h2>Past Perfect: the big idea</h2>
+  <p class="lede">Two past events, and you want to show which one came first.</p>
+  <div class="body">
+    <p class="q">When I arrived at school, the bell had already rung.</p>
+    <div data-tl="pastp"></div>
+    <div class="callout">The bell rang first (<b>had rung</b>). Then I arrived (<b>arrived</b>). Both are in the past, but one came earlier. Think of it as a <b>flashback</b> in a film: the older event gets had + V3.</div>
+  </div>
+  <aside class="notes">Draw the timeline on the board with the students. Ask them which happened first before you reveal the answer. The flashback analogy works well with this age group.</aside>
+</section>
+
+<!-- 28 -->
+<section class="slide" data-title="Past Perfect: formula and linking words">
+  <h2>Past Perfect: formula and linking words</h2>
+  <p class="lede">Had is used for every subject. No exceptions.</p>
+  <div class="body" style="gap:18px">
+    <div class="formula"><span class="subj">Subject</span><span class="plus">+</span><span class="aux">had</span><span class="plus">+</span><span class="vf">V3</span></div>
+    <div class="cols c2" style="gap:16px">
+      <div class="panel"><h3>before</h3><p class="big">I <span class="aux">had</span> <span class="vf">finished</span> my homework before my father came home.</p></div>
+      <div class="panel"><h3>after</h3><p class="big">After she <span class="aux">had</span> <span class="vf">eaten</span>, she went to bed.</p></div>
+      <div class="panel"><h3>when</h3><p class="big">When we arrived, the movie <span class="aux">had</span> already <span class="vf">started</span>.</p></div>
+      <div class="panel"><h3>by the time</h3><p class="big">By the time the guests arrived, we <span class="aux">had</span> <span class="vf">cleaned</span> the house.</p></div>
+    </div>
+  </div>
+  <aside class="notes">Practice activity: give two separate sentences (She ate. She went to bed.) and ask students to join them using 'after' plus the past perfect. Do five pairs.</aside>
+</section>
+
+<!-- 29 -->
+<section class="slide" data-title="Past Perfect: negative, question, contrast">
+  <h2>Negative, question, and the 3-second test</h2>
+  <p class="lede">Same pattern as the present perfect. Just change have/has to had.</p>
+  <div class="body">
+    <div class="cols c2">
+      <div class="panel"><h3>Negative</h3><p class="big"><span class="subj">S</span> + <span class="aux">had not (hadn't)</span> + <span class="vf">V3</span></p><p class="big" style="margin-top:10px">I <span class="aux">hadn't</span> <span class="vf">finished</span> my work when the bell rang.</p></div>
+      <div class="panel"><h3>Question</h3><p class="big"><span class="aux">Had</span> + <span class="subj">S</span> + <span class="vf">V3</span> ?</p><p class="big" style="margin-top:10px"><span class="aux">Had</span> you <span class="vf">finished</span> the work?<br><span class="small">Yes, I had. / No, I hadn't.</span></p></div>
+    </div>
+    <div class="callout" style="font-size:21px"><b>Decide in three seconds: are there two past events in this sentence?</b><br>
+      If no, just use the Simple Past (V2): "I ate nasi goreng last night."<br>
+      If yes, the earlier event takes <b>had + V3</b>, the later one takes V2.</div>
+  </div>
+  <aside class="notes">Make students write the three-second test on the inside cover of their notebook. Then test them orally with five mixed sentences.</aside>
+</section>
+
+<!-- 30 -->
+<section class="slide" data-title="Exercise 5: Past Perfect" data-timer="10">
+  <h2>Exercise 5: Past Perfect</h2>
+  <p class="inst">Use <b>had + V3</b>, or the Simple Past where the past perfect is not needed. Careful with number 7.</p>
+  <div class="body" data-ex="ex5"></div>
+  <aside class="notes">Answer key: 1 had already started, 2 had finished, 3 had eaten, 4 had left, 5 hadn't met, 6 Had ... finished, 7 cleaned (simple past, only one event), 8 had gone. Number 7 is the trap; discuss it with the whole class.</aside>
+</section>
+
+<!-- 31 -->
+<section class="slide dark section" data-title="Part 5: Future Perfect" data-sec>
+  <div class="part">Part 5</div><h1>Future Perfect</h1>
+  <p class="tag"><b>will have + V3</b> finished before a future deadline</p>
+  <div class="bignum">5</div>
+  <aside class="notes">Last tense of the unit. Tell students it is the easiest to build because they now know all the pieces: will, have, and V3.</aside>
+</section>
+
+<!-- 32 -->
+<section class="slide" data-title="Future Perfect: the big idea">
+  <h2>Future Perfect: the big idea</h2>
+  <p class="lede">Something will already be finished before a certain time in the future.</p>
+  <div class="body">
+    <p class="q">By 5 p.m., I will have finished the report.</p>
+    <div data-tl="futp"></div>
+    <div class="callout">Look at the future moment first, then look back. <b>Is the action already complete at that moment?</b> If yes, use the Future Perfect.</div>
+  </div>
+  <aside class="notes">Concrete example from their world: 'By the time you graduate, you will have completed your industrial placement.' Personal and future-focused examples motivate this age group.</aside>
+</section>
+
+<!-- 33 -->
+<section class="slide" data-title="Future Perfect: the formula">
+  <h2>Future Perfect: the formula</h2>
+  <p class="lede">Three words, always in the same order, for every subject.</p>
+  <div class="body">
+    <div class="formula"><span class="subj">Subject</span><span class="plus">+</span><span class="aux">will have</span><span class="plus">+</span><span class="vf">V3</span></div>
+    <div class="callout">Never <b>"will has"</b>. It is always <b>will have</b>, for I, you, he, she, we and they.</div>
+    <div class="ex-rows">
+      <div>I <span class="aux">will have</span> <span class="vf">finished</span> the report by 5 p.m.</div>
+      <div>She <span class="aux">will have</span> <span class="vf">graduated</span> by next June.</div>
+      <div>They <span class="aux">will have</span> <span class="vf">built</span> the house before the rainy season.</div>
+    </div>
+    <p class="small" style="font-size:18px">Common time signals: by, by the time, by then, before, in two years' time.</p>
+  </div>
+  <aside class="notes">Point out that 'by' is the key preposition here. 'By 5 p.m.' means at or before 5 p.m. Contrast with 'at 5 p.m.' which would need the future continuous.</aside>
+</section>
+
+<!-- 34 -->
+<section class="slide" data-title="Future Perfect vs Future Continuous">
+  <h2>Future Perfect vs Future Continuous</h2>
+  <p class="lede">Both talk about the future, but they answer different questions.</p>
+  <div class="body" style="gap:18px">
+    <div class="cols c2">
+      <div class="panel"><h3>Future Continuous: <span class="aux">at</span> 5 p.m.</h3><p class="big">"At 5 p.m. I <span class="aux">will be</span> <span class="vf">writing</span> the report."</p><p class="small">Still in progress at 5 p.m. Not finished.</p></div>
+      <div class="panel"><h3>Future Perfect: <span class="aux">by</span> 5 p.m.</h3><p class="big">"By 5 p.m. I <span class="aux">will have</span> <span class="vf">written</span> the report."</p><p class="small">Completely finished before 5 p.m.</p></div>
+    </div>
+    <div class="cols c2">
+      <p class="big"><b>Negative:</b> I <span class="aux">won't have</span> <span class="vf">finished</span> by then.</p>
+      <p class="big"><b>Question:</b> <span class="aux">Will</span> you <span class="aux">have</span> <span class="vf">finished</span> by 5 p.m.?</p>
+    </div>
+  </div>
+  <aside class="notes">The AT vs BY contrast is the clearest way to teach this. AT a time = future continuous. BY a time = future perfect. Write those two lines on the board.</aside>
+</section>
+
+<!-- 35 -->
+<section class="slide" data-title="Exercise 6: Future Perfect" data-timer="10">
+  <h2>Exercise 6: Future Perfect</h2>
+  <p class="inst">Complete with <b>will have + V3</b>. Every sentence contains <b>by</b> or <b>by the time</b>: that is your signal.</p>
+  <div class="body" data-ex="ex6"></div>
+  <aside class="notes">Answer key: 1 will have finished, 2 will have graduated, 3 Will ... have completed, 4 will have already eaten, 5 won't have repaired, 6 will have learned/learnt, 7 will have produced, 8 Will ... have packed.</aside>
+</section>
+
+<!-- 36 -->
+<section class="slide" data-title="Common mistakes to avoid">
+  <h2>Common mistakes to avoid</h2>
+  <p class="lede">These four errors appear in almost every class test. Find the mistake, then tap to check.</p>
+  <div class="body">
+    <div class="mist" id="mist"></div>
+  </div>
+  <aside class="notes">Let students find the errors themselves before you tap each card. Discovering the mistake is far more memorable than being told.</aside>
+</section>
+
+<!-- 37 -->
+<section class="slide" data-title="Exercise 7: Mixed practice" data-timer="10">
+  <h2>Exercise 7: Mixed practice</h2>
+  <p class="inst">Which moment in time am I looking at, and is the action finished? After checking, the tense name appears next to each answer.</p>
+  <div class="body" data-ex="ex7"></div>
+  <aside class="notes">Answer key: 1 will be working (FC), 2 have never seen (PresP), 3 had left (PastP), 4 will have saved (FutP), 5 Have ... finished (PresP), 6 will be having (FC), 7 had worked (PastP), 8 have lived (PresP). Ask students to write the tense name next to each answer.</aside>
+</section>
+
+<!-- 38 -->
+<section class="slide" data-title="Exercise 8: Build your own sentences">
+  <h2>Exercise 8: build your own sentences</h2>
+  <p class="inst">Write one true sentence about yourself for each prompt. Then read two of them aloud to your partner.</p>
+  <div class="body own" id="own"></div>
+  <aside class="notes">This is the most valuable exercise in the unit because the sentences are personal and therefore memorable. Type a volunteer's sentence and press 'Cek pola' to check the formula live with the class.</aside>
+</section>
+
+<!-- 39 -->
+<section class="slide" data-title="Summary: all the tenses so far">
+  <h2>Summary: all the tenses so far</h2>
+  <p class="lede">Keep this page. Use it to revise before the test. Purple rows are this unit.</p>
+  <div class="body">
+    <div class="scroll-x"><table class="tbl">
+      <thead><tr><th>Tense</th><th>Formula</th><th>Example</th><th>Use it when</th></tr></thead>
+      <tbody>
+        <tr><td>Present Continuous</td><td>am/is/are + V-ing</td><td>I am eating.</td><td>Happening right now</td></tr>
+        <tr><td>Past Continuous</td><td>was/were + V-ing</td><td>I was eating.</td><td>Was in progress in the past</td></tr>
+        <tr><td>Simple Future</td><td>will + V1</td><td>I will eat.</td><td>Will happen later</td></tr>
+        <tr class="unit"><td>Future Continuous</td><td>will be + V-ing</td><td>I will be eating.</td><td>In progress at a future moment</td></tr>
+        <tr class="unit"><td>Present Perfect</td><td>have/has + V3</td><td>I have eaten.</td><td>Past action, result matters now</td></tr>
+        <tr class="unit"><td>Past Perfect</td><td>had + V3</td><td>I had eaten.</td><td>Happened before another past event</td></tr>
+        <tr class="unit"><td>Future Perfect</td><td>will have + V3</td><td>I will have eaten.</td><td>Finished before a future deadline</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <aside class="notes">Tell students to photograph this slide or copy it into their notebooks. This is their official revision sheet for the unit test.</aside>
+</section>
+
+<!-- 40 -->
+<section class="slide" data-title="Group activity: Find someone who..." data-timer="15">
+  <h2>Group activity: find someone who...</h2>
+  <p class="lede">Groups of four, 15 minutes, using "Have you ever ...?"</p>
+  <div class="body">
+    <div class="steps">
+      <div class="st"><span class="num">1</span><h3>Write five questions</h3><p>Write five "Have you ever ...?" questions in your book.</p></div>
+      <div class="st"><span class="num">2</span><h3>Walk and ask</h3><p>Ask at least five students from other groups. Note their answers.</p></div>
+      <div class="st"><span class="num">3</span><h3>Write a report</h3><p>"Rina has visited Bali, but Andi has never been there."</p></div>
+      <div class="st"><span class="num">4</span><h3>Present</h3><p>One member of each group reads the report to the class.</p></div>
+    </div>
+    <div class="callout"><b>Assessment:</b> willingness to speak (40%), correct use of have/has + V3 (60%)</div>
+  </div>
+  <aside class="notes">Do not skip this activity even if time is short. Cut a written exercise instead. Walk around, note the most common errors, and review them in the last five minutes.</aside>
+</section>
+
+<!-- 41 -->
+<section class="slide" data-title="Homework and next lesson">
+  <h2>Homework and next lesson</h2>
+  <p class="lede">Complete in your exercise book. Bring it to the next meeting.</p>
+  <div class="body">
+    <div class="cols c2">
+      <div class="panel"><h3>Homework</h3><p class="big">Memorise the 14 irregular verbs.<br>Finish Exercises 1 to 8.<br>Write five sentences about your plans using the Future Continuous.<br>Write five sentences about your life using the Present Perfect.</p></div>
+      <div class="panel"><h3>Next lesson</h3><p class="big">Present Perfect Continuous (have been + V-ing)<br>Past Perfect Continuous<br>Mixed tense review<br>Unit 4 test</p></div>
+    </div>
+    <div class="callout"><b>Exit ticket:</b> before you leave, write one Future Perfect sentence on a slip of paper and give it to me.</div>
+  </div>
+  <aside class="notes">Read the exit tickets tonight. If many are wrong, spend ten minutes reviewing at the start of the next lesson before introducing new material.</aside>
+</section>
+
+<!-- 42 -->
+<section class="slide dark section" data-title="Practice makes perfect">
+  <h1>Practice makes perfect.</h1>
+  <p class="tag">A language is not learned in one night. It is learned by using it every day.</p>
+  <div class="chips" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:34px">
+    <span class="aux" style="font-size:22px;padding:6px 16px">will be + V-ing</span>
+    <span class="aux" style="font-size:22px;padding:6px 16px">have / has + V3</span>
+    <span class="aux" style="font-size:22px;padding:6px 16px">had + V3</span>
+    <span class="aux" style="font-size:22px;padding:6px 16px">will have + V3</span>
+  </div>
+  <p style="margin-top:auto;color:#D9C8F2;font-size:19px">Thank you for your attention. <b style="color:#fff">SMK Katolik St. Mikael Surakarta</b></p>
+  <aside class="notes">Close by asking the class to say the four formulas out loud together: will be + V-ing, have/has + V3, had + V3, will have + V3.</aside>
+</section>
+
+</main></div></div>
+
+<nav id="bar" aria-label="Kontrol presentasi">
+  <button id="bPrev" title="Sebelumnya (←)" aria-label="Slide sebelumnya"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <span id="count">1 / 42</span>
+  <button id="bNext" title="Berikutnya (→)" aria-label="Slide berikutnya"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+  <button id="bGrid" title="Semua slide (G)" aria-label="Semua slide"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button>
+  <button id="bNotes" title="Catatan guru (N)" aria-label="Catatan guru" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></button>
+  <button id="bTimer" title="Timer (T)" aria-label="Timer"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg></button>
+  <button id="bTheme" title="Terang / gelap" aria-label="Ganti tema"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
+  <button id="bFull" title="Layar penuh (F)" aria-label="Layar penuh"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+</nav>
+
+<aside id="notesPanel" aria-label="Catatan guru">
+  <button class="x" id="nClose" aria-label="Tutup catatan">×</button>
+  <h3>Catatan guru</h3>
+  <div class="nt" id="notesTitle"></div>
+  <div id="notesText"></div>
+  <div class="keys"><kbd>←</kbd> <kbd>→</kbd> pindah slide &nbsp; <kbd>G</kbd> semua slide<br><kbd>N</kbd> catatan &nbsp; <kbd>T</kbd> timer &nbsp; <kbd>F</kbd> layar penuh</div>
+</aside>
+
+<div id="overview" role="dialog" aria-label="Semua slide"><h3>Semua slide</h3><div id="ovGrid"></div></div>
+
+<div id="timer" aria-live="polite">
+  <span class="tt" id="tTime">10:00</span>
+  <button id="tPause">Jeda</button>
+  <button id="tReset">Ulang</button>
+  <button id="tClose" aria-label="Tutup timer">×</button>
+</div>
+
+<script>
+(function(){
+"use strict";
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ================= timelines ================= */
+let tlc=0;
+function tl(kind){
+  const id="m"+(tlc++), y=110;
+  const mini=kind.endsWith("-mini");
+  const k=mini?kind.replace("-mini",""):kind;
+  let s=`<svg viewBox="0 0 900 ${mini?170:200}" class="tl-svg" role="img" aria-label="Timeline">
+  <defs>
+    <marker id="${id}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="t-fill-ink"/></marker>
+    <marker id="${id}p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="t-fill-plum"/></marker>
+  </defs>
+  <line x1="30" y1="${y}" x2="878" y2="${y}" class="t-axis" marker-end="url(#${id})"/>
+  <line x1="450" y1="${y-16}" x2="450" y2="${y+16}" class="t-now"/>
+  <text x="34" y="${y+60}" class="t-lab">Past</text>
+  <text x="450" y="${y+60}" class="t-lab t-strong" text-anchor="middle">Now</text>
+  <text x="872" y="${y+60}" class="t-lab" text-anchor="end">Future</text>`;
+  if(k==="fc"){
+    s+=`<rect x="590" y="${y-11}" width="230" height="22" rx="11" class="t-bar grow"/>
+    <line x1="700" y1="${y-44}" x2="700" y2="${y+20}" class="t-dash fade"/>
+    <text x="700" y="${y-54}" class="t-redtxt fade" text-anchor="middle">${mini?"5 p.m.":"8 p.m. tomorrow"}</text>
+    <text x="700" y="${y+36}" class="t-sub fade" text-anchor="middle">${mini?"still in progress":"already started, not finished yet"}</text>`;
+  } else if(k==="presp"){
+    s+=`<circle cx="230" cy="${y}" r="10" class="t-red pop"/>
+    <text x="230" y="${y+36}" class="t-redtxt fade" text-anchor="middle">action happened</text>
+    <path d="M232 ${y-16} Q340 ${y-110} 444 ${y-20}" class="t-curve draw" marker-end="url(#${id}p)"/>
+    <text x="340" y="${y-72}" class="t-plumtxt fade" text-anchor="middle">the result is still true now</text>`;
+  } else if(k==="pastp"){
+    s+=`<circle cx="170" cy="${y}" r="11" class="t-red pop"/>
+    <circle cx="330" cy="${y}" r="11" class="t-plum pop" style="animation-delay:.35s"/>
+    <text x="170" y="${y-26}" class="t-redtxt fade" text-anchor="middle">had + V3</text>
+    <text x="330" y="${y-26}" class="t-plumtxt fade" text-anchor="middle">V2</text>
+    <text x="170" y="${y+36}" class="t-sub fade" text-anchor="middle">Event 1: first</text>
+    <text x="330" y="${y+36}" class="t-sub fade" text-anchor="middle">Event 2: second</text>
+    <path d="M186 ${y-48} Q250 ${y-80} 314 ${y-48}" class="t-curve draw" marker-end="url(#${id}p)"/>
+    <text x="250" y="${y-76}" class="t-sub fade" text-anchor="middle">then</text>`;
+  } else if(k==="futp"){
+    s+=`<rect x="452" y="${y-11}" width="240" height="22" rx="11" class="t-bar grow"/>
+    <text x="572" y="${y-24}" class="t-sub fade" text-anchor="middle">work happens here</text>
+    <line x1="720" y1="${y-58}" x2="720" y2="${y}" class="t-flag fade"/>
+    <circle cx="720" cy="${y}" r="13" class="t-red pop" style="animation-delay:.9s"/>
+    <path d="M713 ${y} l5 5 l9 -10" stroke="#fff" stroke-width="3" fill="none" class="fade"/>
+    <text x="720" y="${y-66}" class="t-redtxt fade" text-anchor="middle">deadline: by 5 p.m.</text>
+    <text x="720" y="${y+38}" class="t-oktxt fade" text-anchor="middle">finished</text>`;
+  } else if(k==="road"){
+    s+=`<circle cx="170" cy="${y}" r="10" class="t-red pop"/>
+    <text x="170" y="${y-48}" class="t-redtxt fade" text-anchor="middle">Past Perfect</text>
+    <text x="170" y="${y-28}" class="t-sub fade" text-anchor="middle">the earlier of two past actions</text>
+    <path d="M282 ${y-12} Q364 ${y-70} 444 ${y-16}" class="t-curve draw" marker-end="url(#${id}p)"/>
+    <text x="364" y="${y-68}" class="t-plumtxt fade" text-anchor="middle">Present Perfect</text>
+    <text x="340" y="${y+34}" class="t-sub fade" text-anchor="middle">past action, still important now</text>
+    <rect x="560" y="${y-10}" width="150" height="20" rx="10" class="t-bar grow"/>
+    <text x="635" y="${y-48}" class="t-plumtxt fade" text-anchor="middle">Future Continuous</text>
+    <text x="635" y="${y-28}" class="t-sub fade" text-anchor="middle">in progress later</text>
+    <line x1="800" y1="${y-50}" x2="800" y2="${y}" class="t-flag fade"/>
+    <circle cx="800" cy="${y}" r="10" class="t-red pop" style="animation-delay:.7s"/>
+    <text x="872" y="${y-66}" class="t-redtxt fade" text-anchor="end">Future Perfect</text>
+    <text x="872" y="${y+34}" class="t-sub fade" text-anchor="end">finished by a deadline</text>`;
+  }
+  return s+"</svg>";
+}
+function titleLine(){
+  return `<svg viewBox="0 0 1120 60" class="tl-svg" aria-hidden="true">
+  <line x1="0" y1="30" x2="1120" y2="30" stroke="rgba(255,255,255,.35)" stroke-width="2" class="draw" style="stroke-dasharray:1200;stroke-dashoffset:1200"/>
+  ${[160,420,700,960].map((x,i)=>`<circle cx="${x}" cy="30" r="9" fill="${i%2?"#F7A9B2":"#fff"}" class="pop" style="animation-delay:${.5+i*.18}s"/>`).join("")}
+  <line x1="560" y1="14" x2="560" y2="46" stroke="#fff" stroke-width="3" class="fade"/>
+  </svg>`;
+}
+function renderTimelines(root){
+  $$("[data-tl]",root).forEach(el=>{
+    const k=el.dataset.tl;
+    el.innerHTML = k==="title"? titleLine() : tl(k);
+  });
+}
+
+/* road map buttons */
+$$("#roadBtns .chipbtn").forEach(b=>b.addEventListener("click",()=>{
+  $$("#roadBtns .chipbtn").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  const el=$("#roadTl"); el.dataset.tl=b.dataset.k; el.innerHTML=tl(b.dataset.k);
+}));
+
+/* ================= exercises ================= */
+const EX={
+ ex1:[
+  ["At 9 o'clock tomorrow morning, I {0} (work) in the workshop.",[["will be working"]]],
+  ["Don't call her at 8 p.m. She {0} (have) dinner with her family.",[["will be having"]]],
+  ["This time next week, we {0} (travel) to Yogyakarta.",[["will be travelling","will be traveling"]]],
+  ["{0} you {1} (use) the printer this afternoon?",[["will"],["be using"]]],
+  ["They {0} (not / wait) for us at the station.",[["will not be waiting"]]],
+  ["When you arrive, my father {0} (repair) the machine.",[["will be repairing"]]],
+  ["What {0} you {1} (do) at this time tomorrow?",[["will"],["be doing"]]],
+  ["She {0} (not / attend) the meeting because she is sick.",[["will not be attending"]]]
+ ],
+ ex2:[
+  ["go → {0}",[["gone"]]],["eat → {0}",[["eaten"]]],["write → {0}",[["written"]]],["finish → {0}",[["finished"]]],
+  ["see → {0}",[["seen"]]],["study → {0}",[["studied"]]],["drink → {0}",[["drunk"]]],["take → {0}",[["taken"]]]
+ ],
+ ex3:[
+  ["I {0} (finish) my homework, so I can watch TV now.",[["have finished"]]],
+  ["She {0} (not / eat) breakfast yet.",[["has not eaten"]]],
+  ["{0} you ever {1} (visit) Bali?",[["have"],["visited"]]],
+  ["They {0} (live) in Solo since 2018.",[["have lived"]]],
+  ["My father {0} (work) at this factory for ten years.",[["has worked"]]],
+  ["We {0} (not / see) that movie before.",[["have not seen"]]],
+  ["{0} the bus {1} (arrive) yet?",[["has"],["arrived"]]],
+  ["Andi {0} (just / repair) his motorcycle.",[["has just repaired"]]]
+ ],
+ ex4:[
+  ["I {0} (see) that film last week.",[["saw"]]],
+  ["I {0} (see) that film three times.",[["have seen"]]],
+  ["She {0} (go) to Jakarta yesterday.",[["went"]]],
+  ["She {0} (never / go) to Jakarta.",[["has never been","has never gone"]]],
+  ["We {0} (finish) the project two days ago.",[["finished"]]],
+  ["We {0} (already / finish) the project.",[["have already finished"]]],
+  ["{0} you {1} (do) your homework yet?",[["have"],["done"]]],
+  ["When {0} you {1} (do) your homework?",[["did"],["do"]]]
+ ],
+ ex5:[
+  ["When we arrived, the film {0} (already / start).",[["had already started"]]],
+  ["She {0} (finish) her work before the bell rang.",[["had finished"]]],
+  ["After Budi {0} (eat), he washed the dishes.",[["had eaten"]]],
+  ["By the time I got there, they {0} (leave).",[["had left"]]],
+  ["I {0} (not / meet) him before yesterday.",[["had not met"]]],
+  ["{0} you {1} (finish) the task before the deadline?",[["had"],["finished"]]],
+  ["Last Sunday my brother {0} (clean) his motorcycle.",[["cleaned"]]],
+  ["The workshop was quiet because everyone {0} (go) home.",[["had gone"]]]
+ ],
+ ex6:[
+  ["By 6 p.m. tonight, I {0} (finish) all my homework.",[["will have finished"]]],
+  ["By next year, she {0} (graduate) from this school.",[["will have graduated"]]],
+  ["{0} they {1} (complete) the project by Friday?",[["will"],["have completed"]]],
+  ["By the time you arrive, we {0} (already / eat) dinner.",[["will have already eaten","will already have eaten"]]],
+  ["He {0} (not / repair) the machine by tomorrow morning.",[["will not have repaired"]]],
+  ["In two years' time, I {0} (learn) how to weld properly.",[["will have learned","will have learnt"]]],
+  ["By 2030, this factory {0} (produce) one million parts.",[["will have produced"]]],
+  ["{0} you {1} (pack) your bags before we leave?",[["will"],["have packed"]]]
+ ],
+ ex7:[
+  ["At 9 a.m. tomorrow I {0} (work) in the workshop.",[["will be working"]],"Future Continuous"],
+  ["I {0} (never / see) snow in my life.",[["have never seen"]],"Present Perfect"],
+  ["By the time we arrived, the train {0} (leave).",[["had left"]],"Past Perfect"],
+  ["By next month, she {0} (save) enough money for a laptop.",[["will have saved"]],"Future Perfect"],
+  ["{0} you {1} (finish) your report yet?",[["have"],["finished"]],"Present Perfect"],
+  ["Don't call me at 7 p.m. I {0} (have) dinner.",[["will be having"]],"Future Continuous"],
+  ["He was tired because he {0} (work) all day.",[["had worked","had been working"]],"Past Perfect"],
+  ["They {0} (live) in this city since 2015.",[["have lived","have been living"]],"Present Perfect"]
+ ]
+};
+const CONTR={"won't":"will not","haven't":"have not","hasn't":"has not","hadn't":"had not","didn't":"did not","i've":"i have","we've":"we have","they've":"they have","you've":"you have","she's":"she has","he's":"he has","i'd":"i had","i'll":"i will","we'll":"we will"};
+function norm(s){
+  s=String(s).toLowerCase().replace(/[’‘`´]/g,"'").replace(/[.?!,]+$/,"").replace(/\s+/g," ").trim();
+  return s.split(" ").map(w=>CONTR[w]||w).join(" ");
+}
+function buildEx(host,key){
+  const data=EX[key]; const grid=document.createElement("div");
+  grid.className="qgrid"+(key==="ex2"?" one":"");
+  data.forEach((it,qi)=>{
+    const [txt,ans,tag]=it;
+    const parts=esc(txt).split(/\{(\d)\}/);
+    let html="";
+    parts.forEach((p,i)=>{
+      if(i%2===0){ html+=p.replace(/\(([^)]+)\)/g,'<span class="hintv">($1)</span>'); }
+      else{
+        const a=ans[+p]; const w=Math.max(...a.map(x=>x.length));
+        html+=`<input class="blank" data-b="${p}" style="width:${Math.max(3.2,Math.min(w,20)*0.62)}em" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Jawaban nomor ${qi+1}">`;
+      }
+    });
+    if(tag) html+=`<span class="ttag">${tag}</span>`;
+    const row=document.createElement("div"); row.className="qi";
+    row.innerHTML=`<span class="n">${qi+1}</span><span>${html}</span>`;
+    grid.appendChild(row);
+  });
+  const ctr=document.createElement("div"); ctr.className="ctrls";
+  const mins=host.closest(".slide").dataset.timer;
+  ctr.innerHTML=`<button class="btn primary" data-act="check">Cek jawaban</button>
+    <button class="btn" data-act="key">Tampilkan kunci</button>
+    <button class="btn" data-act="reset">Ulangi</button>
+    <span class="score" aria-live="polite"></span>
+    ${mins?`<button class="btn red timerbtn" data-act="timer">Mulai timer ${mins} menit</button>`:""}`;
+  host.appendChild(grid); host.appendChild(ctr);
+  const inputs=$$("input.blank",grid);
+  inputs.forEach((inp,i)=>inp.addEventListener("keydown",e=>{
+    if(e.key==="Enter"){ e.preventDefault(); (inputs[i+1]||inputs[0]).focus(); }
+  }));
+  ctr.addEventListener("click",e=>{
+    const b=e.target.closest("button"); if(!b) return;
+    const act=b.dataset.act, score=$(".score",ctr);
+    if(act==="timer"){ startTimer(+mins); return; }
+    if(act==="reset"){ inputs.forEach(x=>{x.value="";x.classList.remove("ok","bad")}); $$(".qi",grid).forEach(r=>r.classList.remove("ok","bad")); score.textContent=""; score.className="score"; host.classList.remove("show-tags"); return; }
+    let right=0;
+    $$(".qi",grid).forEach((row,qi)=>{
+      const ans=data[qi][1]; let all=true;
+      $$("input.blank",row).forEach(inp=>{
+        const acc=ans[+inp.dataset.b];
+        if(act==="key"){ inp.value=acc[0]; }
+        const good=acc.some(a=>norm(a)===norm(inp.value));
+        inp.classList.toggle("ok",good); inp.classList.toggle("bad",!good);
+        if(!good) all=false;
+      });
+      row.classList.toggle("ok",all); row.classList.toggle("bad",!all);
+      if(all) right++;
+    });
+    host.classList.add("show-tags");
+    if(act==="check"){ score.textContent=`${right} / ${data.length} benar`; score.className="score"+(right===data.length?" good":""); }
+    else { score.textContent="Kunci jawaban"; score.className="score"; }
+  });
+}
+$$("[data-ex]").forEach(h=>buildEx(h,h.dataset.ex));
+
+/* ================= regular verbs: workshop words ================= */
+$("#addWorkshop").addEventListener("click",function(){
+  const tb=$("#regTbl tbody");
+  [["weld","welded","to join metal"],["drill","drilled","to make a hole"],["assemble","assembled","to put parts together"],["tighten","tightened","to make tight"]]
+    .forEach(([a,b,m])=>{ const tr=document.createElement("tr"); tr.innerHTML=`<td>${a}</td><td>${b}</td><td class="v3">${b}</td><td>${m}</td>`; tb.appendChild(tr); });
+  this.remove();
+  const sl=tb.closest(".slide"); $(".tbl",sl).style.fontSize="16px"; $$(".tbl td",sl).forEach(td=>td.style.padding="6px 16px");
+});
+
+/* ================= irregular verbs ================= */
+const IRR=[["be","was/were","been"],["go","went","gone"],["eat","ate","eaten"],["do","did","done"],["have","had","had"],["come","came","come"],["drink","drank","drunk"],
+           ["make","made","made"],["see","saw","seen"],["take","took","taken"],["write","wrote","written"],["give","gave","given"],["read","read","read"],["speak","spoke","spoken"]];
+const irr=$("#irr");
+[IRR.slice(0,7),IRR.slice(7)].forEach(set=>{
+  irr.insertAdjacentHTML("beforeend",`<table class="tbl"><thead><tr><th>V1</th><th>V2</th><th>V3</th></tr></thead><tbody>${
+    set.map(r=>`<tr><td>${r[0]}</td><td class="v2"><span>${r[1]}</span></td><td class="v3"><span>${r[2]}</span></td></tr>`).join("")}</tbody></table>`);
+});
+const irrSlide=irr.closest(".slide");
+function toggleHide(cls,btn,label){
+  const on=irrSlide.classList.toggle(cls);
+  $$(".shown",irr).forEach(td=>td.classList.remove("shown"));
+  btn.textContent=on?label[1]:label[0];
+}
+$("#hideV3").addEventListener("click",e=>toggleHide("hide-v3",e.target,["Tutup kolom V3","Buka kolom V3"]));
+$("#hideV2").addEventListener("click",e=>toggleHide("hide-v2",e.target,["Tutup kolom V2","Buka kolom V2"]));
+irr.addEventListener("click",e=>{ const td=e.target.closest("td.v2,td.v3"); if(td) td.classList.add("shown"); });
+
+/* ================= have / has ================= */
+const HH=[["I","have"],["She","has"],["My teacher","has"],["They","have"],["Rina and Andi","have"],["It","has"],["We","have"],["The machine","has"],["You","have"],["My friends","have"],["Pak Budi","has"]];
+const hh=$("#hh");
+HH.forEach(([s,a])=>{
+  const b=document.createElement("button"); b.className="sbtn"; b.innerHTML=`${s}<span class="ans">?</span>`;
+  b.addEventListener("click",()=>{ b.classList.add("rev-"+a); $(".ans",b).textContent=a; });
+  hh.appendChild(b);
+});
+
+/* ================= since / for game ================= */
+const SF=[["2019","since"],["three years","for"],["Monday","since"],["two hours","for"],["I was a child","since"],["a long time","for"],["last week","since"],["ten minutes","for"],["January","since"],["five months","for"],["yesterday morning","since"],["ages","for"],["my birthday","since"],["a week","for"],["2020","since"],["six weeks","for"]];
+const STEMS=["I have lived here","She has studied English","We have known each other","He has worked at the factory","They have waited"];
+let sfRound=[],sfI=0,sfScore=0,sfLock=false;
+function sfNew(){
+  sfRound=SF.slice().sort(()=>Math.random()-.5).slice(0,10); sfI=0; sfScore=0; sfShow();
+  $("#sfFb").textContent="Pilih jawaban yang benar."; $("#sfFb").className="gfb";
+}
+function sfShow(){
+  const [t]=sfRound[sfI]; const stem=STEMS[sfI%STEMS.length];
+  $("#sfQ").innerHTML=`${esc(stem)} <u></u> ${esc(t)}.`;
+  $("#sfCount").textContent=`${sfI+1} / 10  ·  Skor ${sfScore}`;
+  $$("#sfGame .gbtns button").forEach(b=>b.disabled=false);
+  sfLock=false;
+}
+$$("#sfGame .gbtns button").forEach(b=>b.addEventListener("click",()=>{
+  if(sfLock) return;
+  if(sfI>=sfRound.length){ sfNew(); return; }
+  sfLock=true;
+  const [t,a]=sfRound[sfI]; const fb=$("#sfFb");
+  if(b.dataset.a===a){ sfScore++; fb.textContent=`Benar! ${a} ${t}`; fb.className="gfb y"; }
+  else { fb.textContent=`Belum tepat: ${a} ${t} (${a==="since"?"a starting point":"a length of time"})`; fb.className="gfb n"; }
+  $("#sfQ u").textContent=a;
+  sfI++;
+  setTimeout(()=>{
+    if(sfI<sfRound.length) sfShow();
+    else { $("#sfQ").innerHTML=`Selesai! Skor: ${sfScore} / 10`; $("#sfCount").textContent="Tekan tombol mana saja untuk main lagi"; fb.textContent=""; sfLock=false; }
+  },1300);
+}));
+sfNew();
+
+/* ================= common mistakes ================= */
+const MIST=[
+  ["I have go to Bali.","I have gone to Bali.","After have/has/had/will have you must use V3, never V1."],
+  ["She have finished.","She has finished.","She is singular, so it takes has."],
+  ["I have eaten yesterday.","I ate yesterday.","With yesterday, use the Simple Past."],
+  ["I will be study at 8 p.m.","I will be studying at 8 p.m.","After will be you must use V-ing."]
+];
+const mist=$("#mist");
+MIST.forEach(([w,c,r])=>{
+  const b=document.createElement("button"); b.className="mcard";
+  b.innerHTML=`<span class="w">${esc(w)}</span><span class="tap">Apa yang salah? Tap untuk melihat.</span><span class="fix"><span class="c">${esc(c)}</span><br><span class="r">${esc(r)}</span></span>`;
+  b.addEventListener("click",()=>b.classList.toggle("open"));
+  mist.appendChild(b);
+});
+
+/* ================= build your own ================= */
+const OWN=[
+  ["Future Continuous","What will you be doing at 8 p.m. tonight?",/\b(will|won't) (not )?be \w+ing\b/i,"will be + V-ing","At 8 p.m. tonight, I will be doing my homework."],
+  ["Present Perfect","Name one place you have never visited.",/\b(have|has) never \w+|\b(haven't|hasn't) (ever )?\w+/i,"have / has + never + V3","I have never visited Bali."],
+  ["Present Perfect","How long have you studied at this school? (since or for)",/\b(have|has|'ve) (been )?\w+.*\b(since|for)\b/i,"have / has + V3 + since / for","I have studied at this school for two years."],
+  ["Past Perfect","What had you already done before you came to school today?",/\bhad (already |just )?\w+/i,"had + V3","Before I came to school today, I had already eaten breakfast."],
+  ["Future Perfect","What will you have achieved by the time you graduate?",/\bwill (already )?have (already )?\w+/i,"will have + V3","By the time I graduate, I will have completed my industrial placement."]
+];
+const own=$("#own");
+OWN.forEach(([t,p,re,f,ex],i)=>{
+  const row=document.createElement("div"); row.className="row";
+  row.innerHTML=`<span class="num" style="font-size:24px">${i+1}</span><div class="p"><b>${t}</b>${esc(p)}</div><input type="text" aria-label="Kalimat ${i+1}" placeholder="Tulis kalimatmu..."><button class="btn">Cek pola</button><div class="fb"></div>`;
+  const inp=$("input",row), fb=$(".fb",row);
+  const check=()=>{
+    const v=inp.value.trim();
+    if(!v){ fb.innerHTML=`Contoh: <i>${esc(ex)}</i>`; inp.className=""; return; }
+    const ok=re.test(v); inp.className=ok?"ok":"bad";
+    fb.innerHTML= ok?`<span class="ok-t">Pola ${esc(f)} sudah ada.</span> Cek juga ejaan V3-nya.`:`<span style="color:var(--bad);font-weight:700">Pola belum terlihat.</span> Gunakan ${esc(f)}. Contoh: <i>${esc(ex)}</i>`;
+  };
+  $("button",row).addEventListener("click",check);
+  inp.addEventListener("keydown",e=>{ if(e.key==="Enter") check(); });
+  own.appendChild(row);
+});
+
+/* ================= footers ================= */
+const slides=$$(".slide");
+slides.forEach((s,i)=>{
+  if(!s.classList.contains("dark")) s.insertAdjacentHTML("beforeend",`<footer class="sf"><span>SMK Katolik St. Mikael Surakarta, English Unit 4</span><span>${i+1}</span></footer>`);
+});
+
+/* ================= navigation ================= */
+let cur=0;
+const stage=$("#stage");
+function go(n){
+  n=Math.max(0,Math.min(slides.length-1,n));
+  slides[cur].classList.remove("active");
+  cur=n; const s=slides[cur]; s.classList.add("active");
+  $("#count").textContent=`${cur+1} / ${slides.length}`;
+  $("#prog").style.width=((cur+1)/slides.length*100)+"%";
+  renderTimelines(s);
+  if(s.contains($("#roadTl"))){ $$("#roadBtns .chipbtn").forEach(x=>x.setAttribute("aria-pressed",x.dataset.k==="road")); $("#roadTl").dataset.tl="road"; renderTimelines(s); }
+  $("#notesTitle").textContent=`Slide ${cur+1}: ${s.dataset.title||""}`;
+  const n2=$(".notes",s); $("#notesText").textContent=n2?n2.textContent.trim():"Tidak ada catatan untuk slide ini.";
+  try{ history.replaceState(null,"","#"+(cur+1)); }catch(e){}
+  if(document.body.classList.contains("fluid")) window.scrollTo(0,0);
+}
+$("#bPrev").onclick=()=>go(cur-1);
+$("#bNext").onclick=()=>go(cur+1);
+
+function toggleNotes(force){
+  const p=$("#notesPanel"); const on=force!==undefined?force:!p.classList.contains("open");
+  p.classList.toggle("open",on); $("#bNotes").setAttribute("aria-pressed",on);
+}
+$("#bNotes").onclick=()=>toggleNotes();
+$("#nClose").onclick=()=>toggleNotes(false);
+
+const ovGrid=$("#ovGrid");
+function openOverview(){
+  ovGrid.innerHTML=slides.map((s,i)=>`<button data-i="${i}" class="${s.hasAttribute("data-sec")?"sec ":""}${i===cur?"cur":""}"><b>${i+1}</b><span>${esc(s.dataset.title||"")}</span></button>`).join("");
+  $("#overview").classList.add("open");
+  const c=$(".cur",ovGrid); if(c) c.focus();
+}
+ovGrid.addEventListener("click",e=>{ const b=e.target.closest("button"); if(b){ go(+b.dataset.i); $("#overview").classList.remove("open"); }});
+$("#overview").addEventListener("click",e=>{ if(e.target.id==="overview") e.currentTarget.classList.remove("open"); });
+$("#bGrid").onclick=openOverview;
+
+function toggleFull(){
+  try{ if(!document.fullscreenElement) document.documentElement.requestFullscreen(); else document.exitFullscreen(); }catch(e){}
+}
+$("#bFull").onclick=toggleFull;
+
+$("#bTheme").onclick=()=>{
+  const r=document.documentElement;
+  const dark=r.dataset.theme? r.dataset.theme==="dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  r.dataset.theme=dark?"light":"dark";
+  renderTimelines(slides[cur]);
+};
+
+document.addEventListener("keydown",e=>{
+  const t=e.target; if(t.matches&&t.matches("input,textarea")) { if(e.key==="Escape") t.blur(); return; }
+  if($("#overview").classList.contains("open")){ if(e.key==="Escape"||e.key.toLowerCase()==="g") $("#overview").classList.remove("open"); return; }
+  const k=e.key;
+  if(k==="ArrowRight"||k==="PageDown"||(k===" "&&!t.closest("button"))){ e.preventDefault(); go(cur+1); }
+  else if(k==="ArrowLeft"||k==="PageUp"){ e.preventDefault(); go(cur-1); }
+  else if(k==="Home") go(0);
+  else if(k==="End") go(slides.length-1);
+  else if(k.toLowerCase()==="n") toggleNotes();
+  else if(k.toLowerCase()==="g") openOverview();
+  else if(k.toLowerCase()==="f") toggleFull();
+  else if(k.toLowerCase()==="t") { const m=+(slides[cur].dataset.timer||10); startTimer(m); }
+  else if(k==="Escape") toggleNotes(false);
+});
+
+let tx=null,ty=null;
+stage.addEventListener("touchstart",e=>{ if(e.target.closest("input,button,textarea")){tx=null;return;} tx=e.touches[0].clientX; ty=e.touches[0].clientY; },{passive:true});
+stage.addEventListener("touchend",e=>{
+  if(tx===null) return; const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+  if(Math.abs(dx)>60 && Math.abs(dx)>Math.abs(dy)*1.5) go(cur+(dx<0?1:-1)); tx=null;
+},{passive:true});
+
+/* ================= timer ================= */
+let tLeft=0,tInt=null,tRun=false,tSet=0;
+const tBox=$("#timer");
+function fmt(s){ return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0"); }
+function tick(){
+  tLeft--; $("#tTime").textContent=fmt(Math.max(0,tLeft));
+  if(tLeft<=0){ clearInterval(tInt); tRun=false; tBox.classList.add("done"); $("#tPause").textContent="Mulai"; beep(); }
+}
+function startTimer(min){
+  clearInterval(tInt); tSet=min*60; tLeft=tSet; tBox.classList.add("on"); tBox.classList.remove("done");
+  $("#tTime").textContent=fmt(tLeft); tRun=true; $("#tPause").textContent="Jeda"; tInt=setInterval(tick,1000);
+}
+$("#tPause").onclick=()=>{
+  if(tLeft<=0){ startTimer(tSet/60); return; }
+  if(tRun){ clearInterval(tInt); tRun=false; $("#tPause").textContent="Lanjut"; }
+  else { tInt=setInterval(tick,1000); tRun=true; $("#tPause").textContent="Jeda"; }
+};
+$("#tReset").onclick=()=>startTimer(tSet/60||10);
+$("#tClose").onclick=()=>{ clearInterval(tInt); tRun=false; tBox.classList.remove("on","done"); };
+$("#bTimer").onclick=()=>{ if(tBox.classList.contains("on")) $("#tClose").click(); else startTimer(+(slides[cur].dataset.timer||10)); };
+function beep(){
+  try{
+    const A=window.AudioContext||window.webkitAudioContext; const ctx=new A();
+    [0,.35,.7].forEach(d=>{ const o=ctx.createOscillator(), g=ctx.createGain(); o.frequency.value=880; o.connect(g); g.connect(ctx.destination);
+      g.gain.setValueAtTime(.0001,ctx.currentTime+d); g.gain.exponentialRampToValueAtTime(.3,ctx.currentTime+d+.02); g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+d+.28);
+      o.start(ctx.currentTime+d); o.stop(ctx.currentTime+d+.3); });
+  }catch(e){}
+}
+
+/* ================= fit ================= */
+function fit(){
+  const fluid = innerWidth<760 && innerHeight>innerWidth;
+  document.body.classList.toggle("fluid",fluid);
+  if(!fluid){
+    const vp=$("#viewport").getBoundingClientRect();
+    const s=Math.min((vp.width-24)/1280,(vp.height-20)/720);
+    document.documentElement.style.setProperty("--s",Math.max(.2,s));
+  }
+}
+addEventListener("resize",fit);
+addEventListener("hashchange",()=>{ const n=parseInt(location.hash.slice(1),10); if(!isNaN(n)&&n-1!==cur) go(n-1); });
+fit();
+const h=parseInt((location.hash||"").slice(1),10);
+slides[0].classList.add("active");
+go(isNaN(h)?0:h-1);
+})();
+</script>
+</body>
+</html>
