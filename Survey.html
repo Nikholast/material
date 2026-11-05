@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Survei Partisipasi Kelompok — SMK Mikael</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ungu:#5b1f8f; --ungu-tua:#3a0f61; --ungu-muda:#f3ecfa;
+      --merah:#c8102e; --merah-muda:#fdecef; --hijau:#1f8a5b;
+      --teks:#1e1530; --abu:#6b6280; --garis:#e4dcef; --bg:#faf7fd;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--teks);min-height:100vh;padding-bottom:48px;-webkit-font-smoothing:antialiased}
+
+    .hero{background:linear-gradient(135deg,var(--ungu-tua) 0%,var(--ungu) 55%,var(--merah) 100%);color:#fff;padding:36px 20px 84px;position:relative;overflow:hidden}
+    .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.07)}
+    .hero::before{width:280px;height:280px;right:-80px;top:-100px}
+    .hero::after{width:160px;height:160px;right:90px;bottom:-90px;background:rgba(200,16,46,.25)}
+    .hero-inner{max-width:680px;margin:0 auto;position:relative;z-index:1}
+    .badge{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.16);padding:6px 12px;border-radius:999px;backdrop-filter:blur(4px)}
+    h1{font-size:clamp(26px,5.5vw,34px);font-weight:800;margin:14px 0 12px;line-height:1.15;letter-spacing:-.01em}
+    .tugas-tag{display:inline-block;background:rgba(255,255,255,.95);color:var(--ungu-tua);font-size:14px;font-weight:600;padding:8px 14px;border-radius:10px;margin-bottom:12px}
+    .tugas-tag strong{color:var(--merah)}
+    .hero p{opacity:.88;font-size:15px;line-height:1.6;max-width:520px}
+
+    .wrap{max-width:680px;margin:-60px auto 0;padding:0 16px;position:relative;z-index:2}
+    .card{background:#fff;border-radius:18px;padding:24px;box-shadow:0 10px 30px rgba(58,15,97,.08);border:1px solid var(--garis);margin-bottom:16px}
+    .card.aktif{border-top:5px solid var(--ungu)}
+    .card.pasif{border-top:5px solid var(--merah)}
+
+    .step{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+    .step-num{width:32px;height:32px;flex-shrink:0;border-radius:10px;background:var(--ungu);color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px}
+    .pasif .step-num{background:var(--merah)}
+    .step h2{font-size:17px;font-weight:700;line-height:1.3}
+    .step small{display:block;font-size:13px;font-weight:500;color:var(--abu)}
+
+    .field{margin-bottom:16px}
+    .field:last-child{margin-bottom:0}
+    label{display:block;font-size:14px;font-weight:600;margin-bottom:7px}
+    .req{color:var(--merah)}
+    input,select,textarea{width:100%;font:inherit;font-size:15px;padding:12px 14px;border:1.5px solid var(--garis);border-radius:12px;background:#fff;color:var(--teks);transition:border-color .15s,box-shadow .15s}
+    input::placeholder,textarea::placeholder{color:#a79fb8}
+    input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ungu);box-shadow:0 0 0 4px rgba(91,31,143,.12)}
+    select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%235b1f8f' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:40px}
+    select:disabled{background-color:#f6f3f9;color:var(--abu);cursor:not-allowed}
+    textarea{min-height:100px;resize:vertical;line-height:1.55}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(max-width:520px){.row{grid-template-columns:1fr}.card{padding:20px}}
+
+    .counter{text-align:right;font-size:12px;color:var(--abu);margin-top:5px;font-weight:500}
+    .counter.ok{color:var(--hijau)}
+
+    .add-row{display:flex;gap:8px}
+    .btn-add{flex-shrink:0;border:none;background:var(--ungu);color:#fff;font:inherit;font-weight:700;font-size:14px;padding:0 18px;border-radius:12px;cursor:pointer;transition:background .15s}
+    .btn-add:hover{background:var(--ungu-tua)}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .chip{display:inline-flex;align-items:center;gap:8px;background:var(--ungu-muda);color:var(--ungu-tua);padding:7px 7px 7px 13px;border-radius:999px;font-size:14px;font-weight:600;animation:pop .18s ease-out}
+    .chip button{border:none;background:rgba(91,31,143,.14);color:var(--ungu-tua);width:22px;height:22px;border-radius:50%;cursor:pointer;font-size:14px;line-height:1;display:grid;place-items:center}
+    .chip button:hover{background:var(--merah);color:#fff}
+    .empty{font-size:13px;color:var(--abu);font-style:italic}
+    @keyframes pop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+
+    .error{display:none;color:var(--merah);font-size:13px;font-weight:500;margin-top:6px}
+    .field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--merah);background:var(--merah-muda)}
+    .field.invalid .error{display:block}
+
+    .alert{display:none;background:var(--merah-muda);color:var(--merah);border:1px solid #f5c2cb;padding:12px 16px;border-radius:12px;font-size:14px;font-weight:500;margin-bottom:14px}
+    .alert.show{display:block}
+
+    .btn-submit{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:16px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--ungu),var(--merah));color:#fff;font:inherit;font-weight:700;font-size:16px;cursor:pointer;box-shadow:0 8px 20px rgba(91,31,143,.25);transition:transform .1s,box-shadow .15s}
+    .btn-submit:hover{box-shadow:0 10px 26px rgba(91,31,143,.33)}
+    .btn-submit:active{transform:scale(.99)}
+    .btn-submit:disabled{opacity:.65;cursor:wait}
+    .spinner{display:none;width:18px;height:18px;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+    .loading .spinner{display:inline-block}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .note{text-align:center;font-size:12.5px;color:var(--abu);margin-top:12px}
+
+    .success{display:none;text-align:center;padding:40px 24px}
+    .success .icon{width:72px;height:72px;margin:0 auto 18px;border-radius:50%;background:linear-gradient(135deg,var(--ungu),var(--merah));display:grid;place-items:center;animation:pop .3s ease-out}
+    .success h2{font-size:22px;font-weight:800;margin-bottom:8px}
+    .success p{color:var(--abu);line-height:1.6;margin-bottom:24px}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="badge">SMK Katolik St. Mikael Surakarta</span>
+      <h1>Survei Partisipasi<br>Kerja Kelompok</h1>
+      <div class="tugas-tag">📌 Tugas: <strong>Poster Then, Now, Future</strong></div>
+      <p>Ceritakan dengan jujur bagaimana setiap anggota berkontribusi. Jawabanmu membantu guru menilai kerja kelompok secara adil.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <form id="form" novalidate>
+      <!-- 1. Data diri -->
+      <section class="card">
+        <div class="step"><span class="step-num">1</span><h2>Data Diri</h2></div>
+        <div class="field" id="f-nama">
+          <label for="nama">Nama Lengkap <span class="req">*</span></label>
+          <input id="nama" autocomplete="name" placeholder="Nama lengkapmu">
+          <p class="error"></p>
+        </div>
+        <div class="row">
+          <div class="field" id="f-kelas">
+            <label for="kelas">Kelas <span class="req">*</span></label>
+            <input id="kelas" placeholder="contoh: XI MI 2">
+            <p class="error"></p>
+          </div>
+          <div class="field" id="f-kelompok">
+            <label for="kelompok">Kelompok <span class="req">*</span></label>
+            <input id="kelompok" placeholder="contoh: Kelompok 3">
+            <p class="error"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Anggota -->
+      <section class="card">
+        <div class="step"><span class="step-num">2</span><h2>Anggota Kelompok<small>Masukkan semua anggota, termasuk dirimu sendiri</small></h2></div>
+        <div class="field" id="f-anggota">
+          <label for="inputAnggota">Nama Anggota <span class="req">*</span></label>
+          <div class="add-row">
+            <input id="inputAnggota" placeholder="Ketik nama, lalu tekan Enter">
+            <button type="button" class="btn-add" onclick="tambahAnggota()">+ Tambah</button>
+          </div>
+          <div class="chips" id="chips"></div>
+          <p class="error"></p>
+        </div>
+      </section>
+
+      <!-- 3. Paling aktif -->
+      <section class="card aktif">
+        <div class="step"><span class="step-num">3</span><h2>Paling Aktif<small>Siapa yang paling banyak berkontribusi?</small></h2></div>
+        <div class="field" id="f-palingAktif">
+          <label for="palingAktif">Anggota Paling Aktif <span class="req">*</span></label>
+          <select id="palingAktif"></select>
+          <p class="error"></p>
+        </div>
+        <div class="field" id="f-alasanAktif">
+          <label for="alasanAktif">Alasan <span class="req">*</span></label>
+          <textarea id="alasanAktif" placeholder="Apa saja yang ia kerjakan? Contoh: mencari bahan, mendesain poster, memimpin diskusi…"></textarea>
+          <div class="counter" id="cAktif"></div>
+          <p class="error"></p>
+        </div>
+      </section>
+
+      <!-- 4. Paling kurang aktif -->
+      <section class="card pasif">
+        <div class="step"><span class="step-num">4</span><h2>Paling Kurang Aktif<small>Siapa yang paling sedikit berkontribusi?</small></h2></div>
+        <div class="field" id="f-palingPasif">
+          <label for="palingPasif">Anggota Paling Kurang Aktif <span class="req">*</span></label>
+          <select id="palingPasif"></select>
+          <p class="error"></p>
+        </div>
+        <div class="field" id="f-alasanPasif">
+          <label for="alasanPasif">Alasan <span class="req">*</span></label>
+          <textarea id="alasanPasif" placeholder="Jelaskan secara jujur dan sopan. Contoh: jarang hadir saat diskusi, tidak mengerjakan bagiannya…"></textarea>
+          <div class="counter" id="cPasif"></div>
+          <p class="error"></p>
+        </div>
+      </section>
+
+      <div class="alert" id="alert"></div>
+      <button type="submit" class="btn-submit" id="btnSubmit">
+        <span class="spinner"></span><span id="btnText">Kirim Jawaban</span>
+      </button>
+      <p class="note">Jawaban bersifat rahasia dan hanya dapat dilihat oleh guru.</p>
+    </form>
+
+    <section class="card success" id="success">
+      <div class="icon">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      </div>
+      <h2>Terima kasih, <span id="sNama"></span>!</h2>
+      <p>Jawabanmu sudah tersimpan.<br>Berkah Dalem.</p>
+      <button type="button" class="btn-submit" onclick="resetForm()">Isi Survei Lagi</button>
+    </section>
+  </main>
+
+  <script>
+    // ⬇️ GANTI dengan URL Web App dari Apps Script (berakhiran /exec)
+    const API_URL = 'https://script.google.com/macros/s/AKfycbycgNN6I_XK96OSSbriH_vqRas-Su6DzamgULyZvtNzWw7WE5llJVCDu7Lib_7rxZAucA/exec';
+
+    const MIN_ALASAN = 15;
+    let anggota = [];
+    const $ = id => document.getElementById(id);
+    const val = id => $(id).value.trim();
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+    // ---------- Anggota ----------
+    $('inputAnggota').addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); tambahAnggota(); }
+    });
+
+    function tambahAnggota() {
+      const inp = $('inputAnggota');
+      const nama = inp.value.trim().replace(/\s+/g, ' ');
+      if (!nama) return;
+      if (anggota.some(a => a.toLowerCase() === nama.toLowerCase())) {
+        setError('f-anggota', `"${nama}" sudah ada di daftar.`);
+        inp.select();
+        return;
+      }
+      anggota.push(nama);
+      inp.value = '';
+      inp.focus();
+      clearError('f-anggota');
+      render();
+    }
+
+    function hapusAnggota(i) { anggota.splice(i, 1); render(); }
+
+    function render() {
+      $('chips').innerHTML = anggota.length
+        ? anggota.map((a, i) => `<span class="chip">${esc(a)}<button type="button" aria-label="Hapus ${esc(a)}" onclick="hapusAnggota(${i})">×</button></span>`).join('')
+        : '<span class="empty">Belum ada anggota.</span>';
+
+      ['palingAktif', 'palingPasif'].forEach(id => {
+        const sel = $(id), prev = sel.value;
+        if (!anggota.length) {
+          sel.innerHTML = '<option value="">Tambahkan anggota dulu (langkah 2)</option>';
+          sel.disabled = true;
+          return;
+        }
+        sel.disabled = false;
+        sel.innerHTML = '<option value="">— Pilih anggota —</option>' +
+          anggota.map(a => `<option value="${esc(a)}">${esc(a)}</option>`).join('');
+        if (anggota.includes(prev)) sel.value = prev;
+      });
+    }
+
+    // ---------- Counter alasan ----------
+    function updateCounter(t, c) {
+      const n = $(t).value.trim().length;
+      $(c).textContent = `${n} / min. ${MIN_ALASAN} karakter`;
+      $(c).classList.toggle('ok', n >= MIN_ALASAN);
+    }
+    [['alasanAktif', 'cAktif'], ['alasanPasif', 'cPasif']].forEach(([t, c]) => {
+      $(t).addEventListener('input', () => updateCounter(t, c));
+    });
+
+    // ---------- Error helpers ----------
+    function setError(fid, msg) {
+      const f = $(fid);
+      f.classList.add('invalid');
+      f.querySelector('.error').textContent = msg;
+    }
+    function clearError(fid) { $(fid).classList.remove('invalid'); }
+    document.querySelectorAll('.field input, .field select, .field textarea').forEach(el => {
+      ['input', 'change'].forEach(ev => el.addEventListener(ev, () => el.closest('.field').classList.remove('invalid')));
+    });
+
+    function showAlert(msg) { $('alert').textContent = msg; $('alert').classList.add('show'); }
+    function hideAlert() { $('alert').classList.remove('show'); }
+
+    function validasi(d) {
+      let ok = true;
+      const cek = (cond, fid, msg) => { if (!cond) { setError(fid, msg); ok = false; } };
+      cek(d.nama, 'f-nama', 'Nama wajib diisi.');
+      cek(d.kelas, 'f-kelas', 'Kelas wajib diisi.');
+      cek(d.kelompok, 'f-kelompok', 'Kelompok wajib diisi.');
+      cek(d.anggota.length >= 2, 'f-anggota', 'Masukkan minimal 2 anggota kelompok.');
+      cek(d.palingAktif, 'f-palingAktif', 'Pilih anggota yang paling aktif.');
+      cek(d.alasanAktif.length >= MIN_ALASAN, 'f-alasanAktif', `Alasan minimal ${MIN_ALASAN} karakter.`);
+      cek(d.palingPasif, 'f-palingPasif', 'Pilih anggota yang paling kurang aktif.');
+      if (d.palingAktif && d.palingPasif)
+        cek(d.palingAktif !== d.palingPasif, 'f-palingPasif', 'Tidak boleh sama dengan anggota paling aktif.');
+      cek(d.alasanPasif.length >= MIN_ALASAN, 'f-alasanPasif', `Alasan minimal ${MIN_ALASAN} karakter.`);
+      return ok;
+    }
+
+    function loading(on) {
+      $('btnSubmit').disabled = on;
+      $('btnSubmit').classList.toggle('loading', on);
+      $('btnText').textContent = on ? 'Mengirim…' : 'Kirim Jawaban';
+    }
+
+    // ---------- Submit ----------
+    $('form').addEventListener('submit', async e => {
+      e.preventDefault();
+      hideAlert();
+
+      if (val('inputAnggota')) tambahAnggota();
+
+      const d = {
+        nama: val('nama'), kelas: val('kelas'), kelompok: val('kelompok'),
+        anggota: [...anggota],
+        palingAktif: $('palingAktif').value, alasanAktif: val('alasanAktif'),
+        palingPasif: $('palingPasif').value, alasanPasif: val('alasanPasif')
+      };
+
+      if (!validasi(d)) {
+        document.querySelector('.field.invalid').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      if (!API_URL.startsWith('https://script.google.com/')) {
+        showAlert('API_URL belum diatur. Hubungi guru.');
+        return;
+      }
+
+      loading(true);
+      try {
+        // text/plain agar tidak terkena CORS preflight
+        const res = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(d)
+        });
+        const out = await res.json();
+        if (!out.ok) throw new Error(out.error || 'Terjadi kesalahan.');
+
+        $('sNama').textContent = d.nama.split(' ')[0];
+        $('form').style.display = 'none';
+        $('success').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (err) {
+        showAlert('Gagal mengirim: ' + err.message + ' Periksa koneksi internet, lalu coba lagi.');
+      } finally {
+        loading(false);
+      }
+    });
+
+    function resetForm() {
+      $('form').reset();
+      anggota = [];
+      render();
+      updateCounter('alasanAktif', 'cAktif');
+      updateCounter('alasanPasif', 'cPasif');
+      document.querySelectorAll('.field.invalid').forEach(f => f.classList.remove('invalid'));
+      hideAlert();
+      $('success').style.display = 'none';
+      $('form').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Init
+    render();
+    updateCounter('alasanAktif', 'cAktif');
+    updateCounter('alasanPasif', 'cPasif');
+  </script>
+</body>
+</html>
